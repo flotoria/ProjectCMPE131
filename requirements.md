@@ -88,11 +88,11 @@ Information provided by the user may be incomplete which prompts the client to d
 5. The user clicks "Login." 
 6. The system validates whether the username and password is valid.
 7. The system then redirects the user to the e-mail client.
-**Alternative Sequence:** 
+- **Alternative Sequence:** 
 1. The username and password is invalid. 
 a. Alert the user that the username or password is invalid.
 b. The user re-enters their username and password.
-**Post-conditions:** The user is on the main webpage with all their emails.
+- **Post-conditions:** The user is on the main webpage with all their emails.
 
 
 
