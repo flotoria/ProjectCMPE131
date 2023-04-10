@@ -10,7 +10,7 @@
 7. Derrick: Search Messages 
 8. Sort Messages/emails
 9. Ryan: Draft emails
-10. Ryan: Attach images in e-mailz
+10. Ryan: Attach images in e-mail
 11. Send emoticons
 12. Categorize emails
 
@@ -23,7 +23,7 @@
 
 ## Use Case
 
-- Use Case: Search Messages
+1. Use Case: Search Messages
 - **Summary:** search the User’s messages through specific parameters
 - **Actor(s):** User
 - **Pre-condition:** User has emails inside their inbox 
