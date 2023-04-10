@@ -3,15 +3,15 @@
 ## Functional Requirements
 1. Ryan: Login
 2. Marvin: To-do list
-3. Chatbox (direct message others)
-4. Recycle and permanently delete emails
+3. Felix: Chatbox (direct message others)
+4. Felix: Recycle and permanently delete emails
 5. Derrick: User registration
 6. Marvin: Edit User Profile
 7. Derrick: Search Messages 
-8. Sort Messages/emails
+8. Felix: Sort Messages/emails
 9. Ryan: Draft emails
 10. Ryan: Attach images in e-mail
-11. Send emoticons
+11. Derrick: Send emoticons
 12. Marvin: Categorize emails
 
 ## Non-functional Requirements
