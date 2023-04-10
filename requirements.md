@@ -1,59 +1,62 @@
-## <remove all of the example text and notes in < > such as this one>
+
 
 ## Functional Requirements
-
-1. requirement
-2. requirement
-3. requirement
-4. requirement
-5. requirement
-6. requirement
-7. requirement
-8. requirement
-9. requirement
-10. requirement
-11. requirement
-12. requirement
+1. Login
+2. To-do list
+3. Chatbox (direct message others)
+4. If the recipient does not exist?
+5. Derrick: User registration
+6. Edit User Profile
+7. Derrick: Search Messages 
+8. Sort Messages/emails
+9. Ryan: Draft emails
+10. Ryan: Attach images in e-mailz
+11. Send emoticons
+12. Categorize emails
 
 ## Non-functional Requirements
+1. Emails should arrive after 2 seconds
+2. Character count should not exceed 256 characters
+3. Image size limit of 8MBs
+4. Limit amount of people can receive an email to 5 people
 
-1. non-functional
-2. non-functional
-3. non-functional
-4. non-functional
 
-## Use Cases
+## Use Case
 
-1. Use Case Name (Should match functional requirement name)
-- **Pre-condition:** <can be a list or short description> Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+Use Case: Search Messages
+Summary: search the User’s messages through specific parameters
+Actor(s): User
+Pre-condition: User has emails inside their inbox 
+User has an email account and is signed into the client 
+Trigger: User enters the parameters to search through their emails
+Primary Sequence: 
+User navigates to their inbox to view their emails
+User selects the sort option from the search bar 
+User enters keywords, phrases, or other information into search bar
+User clicks “Enter” to initialize the search and client will search through inbox for those parameters
+Email client displays all emails that fit the search criteria 
+Alternate Sequence:
+User doesn’t have any emails that relate to the search criteria they entered
+User doesn’t provide adequate information inside the search bar for the client to look for
+Post-Condition: User is able to view the specific emails/messages that they were looking for
 
-- **Trigger:** <can be a list or short description> Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. 
 
-- **Primary Sequence:**
-  
-  1. Ut enim ad minim veniam, quis nostrum e
-  2. Et sequi incidunt 
-  3. Quis aute iure reprehenderit
-  4. ... 
-  5. ...
-  6. ...
-  7. ...
-  8. ...
-  9. ...
-  10. <Try to stick to a max of 10 steps>
+Use Case: User Registration 
+Summary: User is able to register for the email client
+Actor(s): User
+Pre-condition: User doesn’t have an account for the client
+Trigger: User decides to create an account for this email client
+Primary Sequence: 
+User navigates to the email client’s registration page
+User provides their personal information ex. Name, Date of Birth, etc
+User creates a username and password for the client
+System will verify the username and password 
+System creates a new account for the user 
+User is guided to the homepage interface of the email client
+Alternate Sequence: User enters a username that has already been taken which prompts the client to display an error message to change their username 
+Information provided by the user may be incomplete which prompts the client to display an error message
+Post-condition: The user successfully creates an account for the email client and has access to its features 
 
-- **Primary Postconditions:** <can be a list or short description> 
 
-- **Alternate Sequence:** <you can have more than one alternate sequence to describe multiple issues that may arise>
-  
-  1. Ut enim ad minim veniam, quis nostrum e
-  2. Ut enim ad minim veniam, quis nostrum e
-  3. ...
 
-- **Alternate Sequence <optional>:** <you can have more than one alternate sequence to describe multiple issues that may arise>
-  
-  1. Ut enim ad minim veniam, quis nostrum e
-  2. Ut enim ad minim veniam, quis nostrum e
-  3. ...
-2. Use Case Name (Should match functional requirement name)
-   ...
+
