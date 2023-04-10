@@ -1,7 +1,7 @@
 
 
 ## Functional Requirements
-1. Login
+1. Ryan: Login
 2. To-do list
 3. Chatbox (direct message others)
 4. If the recipient does not exist?
@@ -56,6 +56,44 @@
 - **Alternate Sequence:** User enters a username that has already been taken which prompts the client to display an error message to change their username 
 Information provided by the user may be incomplete which prompts the client to display an error message
 - **Post-condition:** The user successfully creates an account for the email client and has access to its features 
+
+3. Use Case: Draft Emails
+- **Summary:** Users should be able to draft emails
+- **Actors:** User, website
+- **Pre-condition:** User is logged in
+- **Trigger:** User clicks on the "New Message" button
+- **Primary Sequence:**
+1. The user clicks on the "New Message" button
+2. The user clicks on the "Recipient" data field and types in an email address
+3. The system checks whether the username / email is valid or not.
+4. The user types in a message in the "Message" field 
+5. The user clicks the "Draft" button.
+6. The system proceeds to save the user's email in the draft.
+- **Alternative Sequence:**
+- The recipient is not a valid email address
+- a. Proceed to alert the user with a pop-up box that the username entered is not valid.
+- b. The user has to re-enter the email
+**Post-conditions:** The user will be able to see their draft messages and go back to them anytime.
+
+4. Use Cases: Login
+-**Summary:** Users should be able to login
+-**Actors:** Website, user
+-**Pre-condition:** The user is on the website
+-**Trigger:** The user clicks on the "login" on the webpage.
+-**Primary Sequence:**
+1. The user clicks "Login" on the homepage.
+2. The system redirects the user to the login webpage.
+3. The user will click the username field enter in the username in the username field.
+4. The user will then click the password field and enter their password.
+5. The user clicks "Login." 
+6. The system validates whether the username and password is valid.
+7. The system then redirects the user to the e-mail client.
+**Alternative Sequence:** 
+1. The username and password is invalid. 
+a. Alert the user that the username or password is invalid.
+b. The user re-enters their username and password.
+**Post-conditions:** The user is on the main webpage with all their emails.
+
 
 
 
