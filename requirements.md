@@ -41,21 +41,21 @@
 - Post-Condition: User is able to view the specific emails/messages that they were looking for
 
 
-1. Use Case: User Registration 
-**Summary:** User is able to register for the email client
-**Actor(s):** User
-**Pre-condition:** User doesn’t have an account for the client
-**Trigger:** User decides to create an account for this email client
-**Primary Sequence:**
-User navigates to the email client’s registration page
-User provides their personal information ex. Name, Date of Birth, etc
-User creates a username and password for the client
-System will verify the username and password 
-System creates a new account for the user 
-User is guided to the homepage interface of the email client
-**Alternate Sequence:** User enters a username that has already been taken which prompts the client to display an error message to change their username 
+2. Use Case: User Registration 
+- **Summary:** User is able to register for the email client
+- **Actor(s):** User
+- **Pre-condition:** User doesn’t have an account for the client
+- **Trigger:** User decides to create an account for this email client
+- **Primary Sequence:**
+1. User navigates to the email client’s registration page
+2. User provides their personal information ex. Name, Date of Birth, etc
+3. User creates a username and password for the client
+4. System will verify the username and password 
+5. System creates a new account for the user 
+6. User is guided to the homepage interface of the email client
+- **Alternate Sequence:** User enters a username that has already been taken which prompts the client to display an error message to change their username 
 Information provided by the user may be incomplete which prompts the client to display an error message
-**Post-condition:** The user successfully creates an account for the email client and has access to its features 
+- **Post-condition:** The user successfully creates an account for the email client and has access to its features 
 
 
 
