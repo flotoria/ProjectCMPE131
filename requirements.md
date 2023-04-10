@@ -76,11 +76,11 @@ Information provided by the user may be incomplete which prompts the client to d
 **Post-conditions:** The user will be able to see their draft messages and go back to them anytime.
 
 4. Use Cases: Login
--**Summary:** Users should be able to login
--**Actors:** Website, user
--**Pre-condition:** The user is on the website
--**Trigger:** The user clicks on the "login" on the webpage.
--**Primary Sequence:**
+- **Summary:** Users should be able to login
+- **Actors:** Website, user
+- **Pre-condition:** The user is on the website
+- **Trigger:** The user clicks on the "login" on the webpage.
+- **Primary Sequence:**
 1. The user clicks "Login" on the homepage.
 2. The system redirects the user to the login webpage.
 3. The user will click the username field enter in the username in the username field.
