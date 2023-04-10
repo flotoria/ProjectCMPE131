@@ -2,17 +2,17 @@
 
 ## Functional Requirements
 1. Ryan: Login
-2. To-do list
+2. Marvin: To-do list
 3. Chatbox (direct message others)
 4. If the recipient does not exist?
 5. Derrick: User registration
-6. Edit User Profile
+6. Marvin: Edit User Profile
 7. Derrick: Search Messages 
 8. Sort Messages/emails
 9. Ryan: Draft emails
-10. Attach images in e-mail
+10. Ryan: Attach images in e-mail
 11. Send emoticons
-12. Categorize emails
+12. Marvin: Categorize emails
 
 ## Non-functional Requirements
 1. Emails should arrive after 2 seconds
