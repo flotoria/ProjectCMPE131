@@ -4,7 +4,7 @@
 1. Ryan: Login
 2. Marvin: To-do list
 3. Chatbox (direct message others)
-4. If the recipient does not exist?
+4. Recycle and permanently delete emails
 5. Derrick: User registration
 6. Marvin: Edit User Profile
 7. Derrick: Search Messages 
