@@ -23,22 +23,22 @@
 
 ## Use Case
 
-Use Case: Search Messages
-Summary: search the User’s messages through specific parameters
-Actor(s): User
-Pre-condition: User has emails inside their inbox 
-User has an email account and is signed into the client 
-Trigger: User enters the parameters to search through their emails
-Primary Sequence: 
-User navigates to their inbox to view their emails
-User selects the sort option from the search bar 
-User enters keywords, phrases, or other information into search bar
-User clicks “Enter” to initialize the search and client will search through inbox for those parameters
-Email client displays all emails that fit the search criteria 
-Alternate Sequence:
-User doesn’t have any emails that relate to the search criteria they entered
-User doesn’t provide adequate information inside the search bar for the client to look for
-Post-Condition: User is able to view the specific emails/messages that they were looking for
+- Use Case: Search Messages
+- Summary: search the User’s messages through specific parameters
+- Actor(s): User
+- Pre-condition: User has emails inside their inbox 
+- User has an email account and is signed into the client 
+- Trigger: User enters the parameters to search through their emails
+- Primary Sequence: 
+1. User navigates to their inbox to view their emails
+2. User selects the sort option from the search bar 
+3. User enters keywords, phrases, or other information into search bar
+4. User clicks “Enter” to initialize the search and client will search through inbox for those parameters
+5. Email client displays all emails that fit the search criteria 
+- Alternate Sequence:
+1. User doesn’t have any emails that relate to the search criteria they entered
+2. User doesn’t provide adequate information inside the search bar for the client to look for
+- Post-Condition: User is able to view the specific emails/messages that they were looking for
 
 
 Use Case: User Registration 
