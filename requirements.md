@@ -180,4 +180,4 @@
 2. Permanently delete recycled messages
 - a. User will press the "permanently delete message" button
 - b. Message will be removed from the recycled messages category
-**Post-condition:** Message will no longer exist in the User's messages or the recycled messages categories
+- **Post-condition:** Message will no longer exist in the User's messages or the recycled messages categories
