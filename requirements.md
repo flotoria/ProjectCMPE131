@@ -126,7 +126,8 @@ Information provided by the user may be incomplete which prompts the client to d
 5. Users can create own categories to put email in
 6. System saves categories with emails in each
 - **Alternate Sequence:** 
-User forget to save categories for email.
-Emails not in correct categories
+- User forget to input a category name for email.
+- a. Tell the user to input a category name.
+- b. The user reinputs the category name.
 - **Post-condition:** The user is in the inbox with categories
 
