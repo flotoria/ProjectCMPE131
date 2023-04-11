@@ -95,6 +95,38 @@ Information provided by the user may be incomplete which prompts the client to d
 - **Post-conditions:** The user is on the main webpage with all their emails.
 
 
+5. Use Cases: Edit Profile
+- **Summary:** Users should be able to edit their profile
+- **Actors:** User, website
+- **Pre-condition:** The user has to be logged in on their account.
+- **Trigger:** The user clicks on their profile and click on edit profile from the drop down menu
+- **Primary Sequence:**
+1. The user clicks on their icon on the top right.
+2. The user is moved to a their profile account
+3. User presses on the edit profile button
+4. User changes what they desire
+5. User hits the save button at the bottom
+6. The system saves the newly updated profile.
+- **Alternative Sequence:** 
+1. The user forgets to hit save
+- a. Profile is not updated
+- b. Message pops up explaining asking to save changes before going
+- **Post-conditions:**  The user is prompted to the newly saved profile
 
-
+6. Use Case: Categorize Emails
+- **Summary:** User is able to categorize the emails they recieve and send
+- **Actor(s):** User, Website
+- **Pre-condition:** User has to be signed in and have some emails in inbox
+- **Trigger:** User hits the categorize button
+- **Primary Sequence:**
+1. User navigates to the their personal email inbox
+2. User presses the categorize button
+3. User can sort their personal inbox however they want
+4. Default option given is sorting by inbox by recipient name, date, and age
+5. Users can create own categories to put email in
+6. System saves categories with emails in each
+- **Alternate Sequence:** 
+User forget to save categories for email.
+Emails not in correct categories
+- **Post-condition:** The user is in the inbox with categories
 
