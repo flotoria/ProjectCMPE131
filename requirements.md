@@ -142,15 +142,15 @@ Information provided by the user may be incomplete which prompts the client to d
 3. Once the website verifies that the username/email for the recipient is valid, the checklist will cross out the requirement to enter a recipient
 4. Once the user types a message into the "Message" field, the checklist will cross out the requirement to enter a message and be completed.
 - **Alternative Sequence:**
-Too many recipients are specified by the user
-a. The To-do list requirement involving specifying the recipient will become unchecked again
-b. User will no longer be able to send the message
-c. User will be prompted to reduce the number of recipients in order to meet the maximum requirement for maximum recipients
-Message has too many characters
-a. The requirement involving entering a message will become unchecked again
-b. User will no longer be able to send the message
-c. User will be prompted to reduce the characters in their message
-d. Once the user reduces the number of characters to meet the requirements, the checklist will check off the requirement to enter a message once again
+- Too many recipients are specified by the user
+- a. The To-do list requirement involving specifying the recipient will become unchecked again
+- b. User will no longer be able to send the message
+- c. User will be prompted to reduce the number of recipients in order to meet the maximum requirement for maximum recipients
+- Message has too many characters
+- a. The requirement involving entering a message will become unchecked again
+- b. User will no longer be able to send the message
+- c. User will be prompted to reduce the characters in their message
+- d. Once the user reduces the number of characters to meet the requirements, the checklist will check off the requirement to enter a message once again
 - **Post-conditions:** User will once again be able to send a message
 
 8. Use Case: Recycle and permanently delete emails
@@ -164,11 +164,11 @@ d. Once the user reduces the number of characters to meet the requirements, the 
 3. If the user enters the recycled category, they can view messages that they previously recycled.
 4. Users will be able to do one of two things to recycled messages
 - **Alternative Sequence**
-Move recycled messages back to the messages category
-a. User will press the "move back to messages" button
-b. Message will be removed from the recycled messages category
-c. Message will reappear in the messages category
-Permanently delete recycled messages
-a. User will press the "permanently delete message" button
-b. Message will be removed from the recycled messages category
+- Move recycled messages back to the messages category
+- a. User will press the "move back to messages" button
+- b. Message will be removed from the recycled messages category
+- c. Message will reappear in the messages category
+- Permanently delete recycled messages
+- a. User will press the "permanently delete message" button
+- b. Message will be removed from the recycled messages category
 **Post-condition:** Message will no longer exist in the User's messages or the recycled messages categories
