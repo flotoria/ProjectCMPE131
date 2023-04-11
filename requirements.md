@@ -25,7 +25,7 @@
 
 1. Use Case: Search Messages
 - **Summary:** search the User’s messages through specific parameters
-- **Actor(s):** User
+- **Actor(s):** User, email client
 - **Pre-condition:** User has emails inside their inbox 
 - User has an email account and is signed into the client 
 - **Trigger:** User enters the parameters to search through their emails
@@ -37,13 +37,18 @@
 5. Email client displays all emails that fit the search criteria 
 - **Alternate Sequence:**
 1. User doesn’t have any emails that relate to the search criteria they entered
-2. User doesn’t provide adequate information inside the search bar for the client to look for
+- a. The email client shows no e-mails.
+- b. Put an alert saying that no e-mails were found. 
+- c. The user re-enters another search term.
+3. User doesn’t provide adequate information inside the search bar for the client to look for
+- a. Alert the user that there was inadequate information and prompt the user to reenter search criteria.
+- b. The user reenters information in the search bar.
 - Post-Condition: User is able to view the specific emails/messages that they were looking for
 
 
 2. Use Case: User Registration 
 - **Summary:** User is able to register for the email client
-- **Actor(s):** User
+- **Actor(s):** User, e-mail client
 - **Pre-condition:** User doesn’t have an account for the client
 - **Trigger:** User decides to create an account for this email client
 - **Primary Sequence:**
@@ -53,13 +58,17 @@
 4. System will verify the username and password 
 5. System creates a new account for the user 
 6. User is guided to the homepage interface of the email client
-- **Alternate Sequence:** User enters a username that has already been taken which prompts the client to display an error message to change their username 
-Information provided by the user may be incomplete which prompts the client to display an error message
+- **Alternate Sequence:** 1. User enters a username that has already been taken which prompts the client to display an error message to change their username 
+- a. Display an error message saying the username has already been taken.
+- b. The user enters in another username. 
+2. Information provided by the user may be incomplete which prompts the client to display an error message
+- a. Highlight the fields where the user have not entered information.
+- b. The user fills in information that is missing.
 - **Post-condition:** The user successfully creates an account for the email client and has access to its features 
 
 3. Use Case: Draft Emails
 - **Summary:** Users should be able to draft emails
-- **Actors:** User, website
+- **Actors:** User, e-mail client
 - **Pre-condition:** User is logged in
 - **Trigger:** User clicks on the "New Message" button
 - **Primary Sequence:**
@@ -70,14 +79,14 @@ Information provided by the user may be incomplete which prompts the client to d
 5. The user clicks the "Draft" button.
 6. The system proceeds to save the user's email in the draft.
 - **Alternative Sequence:**
-- The recipient is not a valid email address
+1. The recipient is not a valid email address
 - a. Proceed to alert the user with a pop-up box that the username entered is not valid.
 - b. The user has to re-enter the email
 **Post-conditions:** The user will be able to see their draft messages and go back to them anytime.
 
 4. Use Cases: Login
 - **Summary:** Users should be able to login
-- **Actors:** Website, user
+- **Actors:** E-mail client, user
 - **Pre-condition:** The user is on the website
 - **Trigger:** The user clicks on the "login" on the webpage.
 - **Primary Sequence:**
@@ -126,7 +135,7 @@ Information provided by the user may be incomplete which prompts the client to d
 5. Users can create own categories to put email in
 6. System saves categories with emails in each
 - **Alternate Sequence:** 
-- User forget to input a category name for email.
+1. User forget to input a category name for email.
 - a. Tell the user to input a category name.
 - b. The user reinputs the category name.
 - **Post-condition:** The user is in the inbox with categories
@@ -142,11 +151,11 @@ Information provided by the user may be incomplete which prompts the client to d
 3. Once the website verifies that the username/email for the recipient is valid, the checklist will cross out the requirement to enter a recipient
 4. Once the user types a message into the "Message" field, the checklist will cross out the requirement to enter a message and be completed.
 - **Alternative Sequence:**
-- Too many recipients are specified by the user
+1. Too many recipients are specified by the user
 - a. The To-do list requirement involving specifying the recipient will become unchecked again
 - b. User will no longer be able to send the message
 - c. User will be prompted to reduce the number of recipients in order to meet the maximum requirement for maximum recipients
-- Message has too many characters
+2. Message has too many characters
 - a. The requirement involving entering a message will become unchecked again
 - b. User will no longer be able to send the message
 - c. User will be prompted to reduce the characters in their message
@@ -164,11 +173,11 @@ Information provided by the user may be incomplete which prompts the client to d
 3. If the user enters the recycled category, they can view messages that they previously recycled.
 4. Users will be able to do one of two things to recycled messages
 - **Alternative Sequence**
-- Move recycled messages back to the messages category
+1. Move recycled messages back to the messages category
 - a. User will press the "move back to messages" button
 - b. Message will be removed from the recycled messages category
 - c. Message will reappear in the messages category
-- Permanently delete recycled messages
+2. Permanently delete recycled messages
 - a. User will press the "permanently delete message" button
 - b. Message will be removed from the recycled messages category
 **Post-condition:** Message will no longer exist in the User's messages or the recycled messages categories
