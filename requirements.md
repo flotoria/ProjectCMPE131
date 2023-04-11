@@ -132,16 +132,16 @@ Information provided by the user may be incomplete which prompts the client to d
 - **Post-condition:** The user is in the inbox with categories
 
 7. Use Case: To-do list
-**Summary:** User will have a checklist on the side to help guide them through the steps needed to send a message
-**Actor(s):** User, Website
-**Pre-condition:** User has to be drafting an email for the to-do list to appear
-**Trigger:** User begins drafting an email
-**Primary Sequence:**
+- **Summary:** User will have a checklist on the side to help guide them through the steps needed to send a message
+- **Actor(s):** User, Website
+- **Pre-condition:** User has to be drafting an email for the to-do list to appear
+- **Trigger:** User begins drafting an email
+- **Primary Sequence:**
 1. User clicks on the "New Message" button
 2. To-do list appears prompting the user to complete a checklist of things needed to send a message
 3. Once the website verifies that the username/email for the recipient is valid, the checklist will cross out the requirement to enter a recipient
 4. Once the user types a message into the "Message" field, the checklist will cross out the requirement to enter a message and be completed.
-**Alternative Sequence:**
+- **Alternative Sequence:**
 Too many recipients are specified by the user
 a. The To-do list requirement involving specifying the recipient will become unchecked again
 b. User will no longer be able to send the message
@@ -151,23 +151,23 @@ a. The requirement involving entering a message will become unchecked again
 b. User will no longer be able to send the message
 c. User will be prompted to reduce the characters in their message
 d. Once the user reduces the number of characters to meet the requirements, the checklist will check off the requirement to enter a message once again
-**Post-conditions:** User will once again be able to send a message
+- **Post-conditions:** User will once again be able to send a message
 
 8. Use Case: Recycle and permanently delete emails
-**Summary:** User will have the option to recycle or permanently delete previous emails
-**Actor(s):** User, Website
-**Pre-condition:** User has to have received emails
-**Trigger:** User clicks the recycle button on an email that is in their inbox
-**Primary Sequence:**
+- **Summary:** User will have the option to recycle or permanently delete previous emails
+- **Actor(s):** User, Website
+- **Pre-condition:** User has to have received emails
+- **Trigger:** User clicks the recycle button on an email that is in their inbox
+- **Primary Sequence:**
 1. User clicks on the "Recycle" button
 2. Message moves from the messages category to a recycled category
 3. If the user enters the recycled category, they can view messages that they previously recycled.
 4. Users will be able to do one of two things to recycled messages
-**Alternative Sequence**
+- **Alternative Sequence**
 Move recycled messages back to the messages category
 a. User will press the "move back to messages" button
 b. Message will be removed from the recycled messages category
-**Post-condition:** Message will reappear in the messages category
+c. Message will reappear in the messages category
 Permanently delete recycled messages
 a. User will press the "permanently delete message" button
 b. Message will be removed from the recycled messages category
