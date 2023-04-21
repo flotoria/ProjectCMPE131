@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
+from flask_login import LoginManager
 
 app = Flask(__name__)
 
@@ -13,4 +14,9 @@ app.config.from_mapping(
 )
 
 db = SQLAlchemy(app)
-from app import routes
+
+login = LoginManager(app)
+
+login.login_view = 'login'
+
+from app import routes, models
