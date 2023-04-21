@@ -16,4 +16,23 @@ class LoginForm(FlaskForm):
             raise ValidationError("Username does not exist.")
         return True
     
+class RegisterForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Register')
+    
+    # This method simply validates whether the username is unique, return True, if not, return False
+    def validate_username(self, username):
+        if User.query.filter_by(username=username.data).first() is None:
+            return True
+        return False
+    
         
+class ComposeForm(FlaskForm):
+    receiving_username = StringField('Receiving User', validators=[DataRequired()])
+    subject = StringField('Subject', validators=[DataRequired()])
+    body = StringField('Message', validators=[DataRequired()])
+    submit = SubmitField('Send')
+
+    
