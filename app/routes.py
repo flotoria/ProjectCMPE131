@@ -72,7 +72,7 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit(): 
         if form.validate_username(form.username) == True: 
-            user = User(name=form.name.data, username=form.username.data, password=generate_password_hash(form.password.data))
+            user = User(name=form.firstname.data + " " + form.lastname.data, username=form.username.data, password=generate_password_hash(form.password.data))
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('login'))

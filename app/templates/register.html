@@ -1,10 +1,11 @@
 <h1>Register</h1>
 <form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
-
-    <p> {{form.name.label}} <br>
-        {{form.name(size=32)}}</p>
- 
+    <p> Please fill in the form to create an account</p>    
+    <p> {{form.firstname.label}} <br>
+        {{form.firstname(size=32)}}</p>
+    <p> {{form.lastname.label}} <br>
+        {{form.lastname(size=32)}}</p>
     <p> {{form.username.label}} <br>
        {{form.username(size=32)}}</p>
 
