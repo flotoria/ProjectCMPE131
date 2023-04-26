@@ -77,3 +77,8 @@ def register():
             db.session.commit()
             return redirect(url_for('login'))
     return render_template('register.html', form=form)
+
+@app.route("/todo/")
+# @login_required
+def todo():
+    return render_template("todo.html")
