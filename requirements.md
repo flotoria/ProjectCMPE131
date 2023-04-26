@@ -10,7 +10,7 @@
 7. Derrick: Search Messages 
 8. Felix: Sort Messages/emails
 9. Ryan: Draft emails
-10. Ryan: Send messages
+10. Ryan: Create and send messages
 11. Derrick: Send emoticons
 12. Marvin: Categorize emails
 
