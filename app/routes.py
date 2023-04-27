@@ -17,7 +17,7 @@ from flask_login import login_required
 from flask import url_for
 from werkzeug.security import generate_password_hash
 
-
+# Main page for registering / login
 @app.route("/")
 def index():
     return render_template('index.html')
