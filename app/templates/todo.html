@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>To Do-List</title>
-        <h1>To-Do List</h1>
-        <link rel="stylesheet" href="todo.css"/>
+        <h1>To-Do Tester List</h1>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/todo.css') }}">
     </head>
     <body>
         <div class="app">
@@ -19,7 +19,7 @@
     
                 </ul>
                 </div>
-        <script src="todo.js"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/todo.js')}}"></script>
 
         </div>
     </body>
