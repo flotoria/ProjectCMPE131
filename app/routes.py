@@ -9,6 +9,7 @@ from .forms import RegisterForm
 from .forms import SearchForm
 from .models import User 
 from .models import Message
+from .models import ToDo
 from .forms import ToDoForm
 from flask_login import current_user
 from flask_login import login_user 
@@ -80,16 +81,16 @@ def register():
             return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
-@app.route("/todo/")
+@app.route("/todo/", methods=["POST", "GET"])
 @login_required
 def todo():
     form = ToDoForm()
+    toDoItemList = ToDo.query.filter_by(user=current_user.id).all()
     if form.validate_on_submit():
-        if form.task == True:
-            
-            return 0
-    return render_template("todo.html")
-
+        toDoItem = ToDo(description=form.task.data, user=current_user.id)
+        db.session.add(toDoItem)
+        db.session.commit()
+    return render_template("todolist.html", form=form, list=toDoItemList)
 
 # Search page
 @app.route('/search', methods=["POST", "GET"])
