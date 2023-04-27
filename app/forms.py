@@ -41,7 +41,7 @@ class SearchForm(FlaskForm):
 	submit = SubmitField("Submit")
 
 class ToDoForm(FlaskForm):
-    task = StringField('Enter task', validadors=[DataRequired()])
+    task = StringField('Enter task', validators=[DataRequired()])
     submit = SubmitField('Add')
     close = SubmitField('X')
 
