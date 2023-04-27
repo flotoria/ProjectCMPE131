@@ -39,7 +39,6 @@ class Message(db.Model):
 def load_user(id):
     return User.query.get(int(id))
 
-
 class ToDo(db.Model):
 
         id = db.Column(db.Integer, primary_key=True)
