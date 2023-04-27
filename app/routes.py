@@ -20,7 +20,7 @@ from werkzeug.security import generate_password_hash
 
 @app.route("/")
 def index():
-    return "Hello World!"
+    return render_template('index.html')
 
 # Dashboard route that is only accessible when the user is logged in
 @app.route("/dashboard/")
