@@ -1,0 +1,9 @@
+<h1>Search</h1>
+<form action="" method="POST" novalidate>
+    {{form.hidden_tag()}}
+    <p> Please fill in the form to create an account</p>    
+    <p> {{form.searched.label}} <br>
+       {{form.searched(size=32)}}</p>
+
+    <p>{{form.submit()}}</p>
+</form>
