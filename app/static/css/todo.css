@@ -1,0 +1,56 @@
+/*Creates the header1 To-Do List light Blue*/
+ h1{
+    background-color: #36c5f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+h2 {
+    text-align: center;
+    cursor:pointer;
+}
+
+
+ul {
+    margin: 10px ;
+    padding: 10px;
+    list-style-type: none;
+}
+
+
+ul li {
+    cursor:pointer;
+    font-size: 25px;
+    justify-content:baseline;
+    list-style: none;
+    padding: 12 px;
+    user-select: none;
+    cursor: pointer;
+    display:flex;
+    font-size: 25px;
+    
+}
+
+ul li:hover{
+    background: lightgray;
+}
+
+ul span {
+    position:absolute;
+    right: 0;
+    padding-right: 3%;
+    
+}
+
+ul li.checked{
+    text-decoration: line-through;
+    right: 0;
+    padding-right: 40%;
+}
+
+ul li span:hover{
+    background-color: blue;
+}
