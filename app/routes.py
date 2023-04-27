@@ -17,10 +17,10 @@ from flask_login import login_required
 from flask import url_for
 from werkzeug.security import generate_password_hash
 
-
+# Main page for registering / login
 @app.route("/")
 def index():
-    return "Hello World!"
+    return render_template('index.html')
 
 # Dashboard route that is only accessible when the user is logged in
 @app.route("/dashboard/")
