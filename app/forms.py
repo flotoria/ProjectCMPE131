@@ -36,4 +36,6 @@ class ComposeForm(FlaskForm):
     body = StringField('Message', validators=[DataRequired()])
     submit = SubmitField('Send')
 
-    
+class SearchForm(FlaskForm):
+	searched = StringField("Searched", validators=[DataRequired()])
+	submit = SubmitField("Submit")

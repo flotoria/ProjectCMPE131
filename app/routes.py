@@ -6,6 +6,7 @@ from flask import flash
 from .forms import LoginForm
 from .forms import ComposeForm
 from .forms import RegisterForm
+from .forms import SearchForm
 from .models import User 
 from .models import Message
 from flask_login import current_user
@@ -82,3 +83,19 @@ def register():
 # @login_required
 def todo():
     return render_template("todo.html")
+
+@app.route('/search', methods=["POST"])
+def search():
+	form = SearchForm()
+	email = email.query
+	if form.validate_on_submit():
+		# Get data from submitted form
+		email.searched = form.searched.data
+		# Query the Database
+		posts = posts.filter(email.content.like('%' + email.searched + '%'))
+		posts = posts.order_by(email.title).all()
+
+		return render_template("search.html",
+		 form=form,
+		 searched = email.searched,
+		 posts = posts)
