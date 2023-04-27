@@ -84,18 +84,18 @@ def register():
 def todo():
     return render_template("todo.html")
 
-@app.route('/search', methods=["POST"])
+# Search page
+@app.route('/search', methods=["POST", "GET"])
+@login_required
 def search():
-	form = SearchForm()
-	email = email.query
-	if form.validate_on_submit():
-		# Get data from submitted form
-		email.searched = form.searched.data
-		# Query the Database
-		posts = posts.filter(email.content.like('%' + email.searched + '%'))
-		posts = posts.order_by(email.title).all()
-
-		return render_template("search.html",
-		 form=form,
-		 searched = email.searched,
-		 posts = posts)
+    form = SearchForm()
+    searchTerm = form.searched.data
+    filtered_messages = []
+    if form.validate_on_submit():
+        user_id = User.query.filter_by(username=current_user.username).first().id
+        messages = Message.query.filter_by(receiving_user=user_id).all()
+        for message in messages: 
+            if message.body.find(searchTerm) != -1 or message.subject.find(searchTerm) != -1:
+                filtered_messages.append(message)
+   
+    return render_template("search.html", form=form, filtered=filtered_messages, class1=User)
