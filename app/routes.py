@@ -120,10 +120,12 @@ def search():
     searchTerm = form.searched.data
     filtered_messages = []
     if form.validate_on_submit():
+        # Checks both the user's id and the message within the database to filter the user who composed the message and the receiver
         user_id = User.query.filter_by(username=current_user.username).first().id
         messages = Message.query.filter_by(receiving_user=user_id).all()
         for message in messages: 
+            # Checks through messages to find matching different in the subject section and body section of the message.
             if message.body.find(searchTerm) != -1 or message.subject.find(searchTerm) != -1:
                 filtered_messages.append(message)
-   
+   #Returns the email that fits the search parameters the user gives
     return render_template("search.html", form=form, filtered=filtered_messages, class1=User)
