@@ -9,6 +9,7 @@ from .forms import RegisterForm
 from .forms import SearchForm
 from .models import User 
 from .models import Message
+from .forms import ToDoForm
 from flask_login import current_user
 from flask_login import login_user 
 from flask_login import logout_user
@@ -80,8 +81,13 @@ def register():
     return render_template('register.html', form=form)
 
 @app.route("/todo/")
-# @login_required
+@login_required
 def todo():
+    form = ToDoForm()
+    if form.validate_on_submit():
+        if form.task == True:
+            
+            return 0
     return render_template("todo.html")
 
 # Search page

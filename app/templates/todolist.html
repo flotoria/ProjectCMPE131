@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<title>To-DoList</title>
+<h1>TO-DO List</h1> 
+<a href="{{ url_for('dashboard')}}"><button>Back</button></a>
+    <form actions="" mehthod="POST" nonvalidate>
+    {{form.hidden_tag()}}
+    <p> Enter a new task</p>
+    {% for i in }
+    {{form.task}}
+    </form>
