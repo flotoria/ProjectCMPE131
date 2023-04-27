@@ -9,3 +9,5 @@ Marvin will work on the to-do list, edit user profiles, and categorize emails.
 Felix will work on the sort messages, chatbox, and recycling of emails
 - Summarize group progress: The team has decided on who should work on which requirements. Team lead is Ryan.
 
+
+
