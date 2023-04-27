@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<title>To-DoList</title>
-<h1>TO-DO List</h1> 
-<a href="{{ url_for('dashboard')}}"><button>Back</button></a>
-    <form actions="" mehthod="POST" nonvalidate>
+<h1>To-Do List</h1>
+<a href="{{ url_for('dashboard') }}"><button>Back</button></a>
+<form action="" method="POST" novalidate>   
     {{form.hidden_tag()}}
-    <p> Enter a new task</p>
-    {% for i in }
-    {{form.task}}
-    </form>
+    <p> {{form.task.label}} <br>
+        {{form.task(size=1000)}}</p>
+     <p>{{form.submit()}}</p>
+</form>
+
+
+{% for i in list %}
+
+    <p>{{ i.description }}     <a href="{{ url_for('deleteToDo', id=i.id) }}"><button>Mark as done</button></a> </p> 
+
+{% endfor %}
+    
