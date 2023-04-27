@@ -40,10 +40,9 @@ def load_user(id):
     return User.query.get(int(id))
 
 class ToDo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(1000), nullable=False)
+    done = db.Column(db.Boolean, default=False)
 
-        id = db.Column(db.Integer, primary_key=True)
-        description = db.Column(db.String(1000), nullable=False)
-        done = db.Column(db.Boolean, default=False)
-
-        user = db.Colum(db.Integer, db.ForeignKey('user.id'))
+    user = db.Column(db.Integer, db.ForeignKey('user.id'))
         

@@ -112,6 +112,7 @@ def todo():
             return 0
     return render_template("todo.html")
 
+
 # Search page
 @app.route('/search', methods=["POST", "GET"])
 @login_required
