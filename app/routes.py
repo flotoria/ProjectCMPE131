@@ -3,6 +3,7 @@ from app import db
 from flask import render_template
 from flask import redirect
 from flask import flash
+from datetime import datetime
 from .forms import LoginForm
 from .forms import ComposeForm
 from .forms import RegisterForm
@@ -31,13 +32,17 @@ def dashboard():
     form = SortForm()
     # Fetch the user_id of the current user and the current user's messages
     user_id = User.query.filter_by(username=current_user.username).first().id
+    # Fetch the user's messages
     messages = Message.query.filter_by(receiving_user=user_id).all()
     if form.validate_on_submit(): 
         if form.sortByOptions.data == 'alphabet':
+            # Sort the messages by subject in alphabetical order
             messages = Message.query.filter_by(receiving_user=user_id).order_by(Message.subject).all()
         if form.sortByOptions.data == 'oldest':
+            # Sort the messages by oldest to newest
             messages = Message.query.filter_by(receiving_user=user_id).order_by(Message.timestamp).all()
         if form.sortByOptions.data == 'newest':
+            # Sort the messages by newest to oldest
             messages = Message.query.filter_by(receiving_user=user_id).order_by(Message.timestamp).all()
             messages.reverse()
 
@@ -51,14 +56,18 @@ def dashboard():
 def compose():
     form = ComposeForm()
     if form.validate_on_submit(): 
-        # When the form is submitted, a message object containing the subject, body, sending user, and receiving user is created.
-        # The timestamp is automatically generated at time of creation.
-        message = Message(subject=form.subject.data, body=form.body.data, sending_user=current_user.id, receiving_user=User.query.filter_by(username=form.receiving_username.data).first().id)
-        # Add the message to the database and commit the changes
-        db.session.add(message)
-        db.session.commit()
-        # Redirect the user to the dashboard afterwards
-        return redirect(url_for('dashboard'))
+        if User.query.filter_by(username=form.receiving_username.data).first() is not None:
+            # When the form is submitted, a message object containing the subject, body, sending user, and receiving user is created.
+            # The timestamp is automatically generated at time of creation.
+            dateAndTime = datetime.now()
+            message = Message(subject=form.subject.data, body=form.body.data, sending_user=current_user.id, receiving_user=User.query.filter_by(username=form.receiving_username.data).first().id, timestamp=dateAndTime)
+            # Add the message to the database and commit the changes
+            db.session.add(message)
+            db.session.commit()
+            # Redirect the user to the dashboard afterwards
+            return redirect(url_for('dashboard'))
+        else:
+            flash("User does not exist")
     # Return the render template of the compose page
     return render_template('compose.html', user=current_user, form=form)
 
@@ -95,6 +104,9 @@ def login():
                 # If so, login and redirect the user to the dashboard
                 login_user(User.query.filter_by(username=form.username.data).first())
                 return redirect(url_for('dashboard'))
+            else: 
+                flash("Incorrect credentials!")
+
     # Render the login page
     return render_template('login.html', form=form)
 
@@ -112,23 +124,32 @@ def register():
             db.session.commit()
             # Redirect the user to the login page.
             return redirect(url_for('login'))
+        else: 
+            flash("Username already exists!")
     return render_template('register.html', form=form)
 
+# To do list route
 @app.route("/todo/", methods=["POST", "GET"])
 @login_required
 def todo():
     form = ToDoForm()
+    # Query all the to do items that are not done and belong to the current user and store them in a list
     toDoItemList = ToDo.query.filter_by(user=current_user.id, done=False).all()
     if form.validate_on_submit():
+        # Add the to do item to the databaes
         toDoItem = ToDo(description=form.task.data, user=current_user.id)
         db.session.add(toDoItem)
         db.session.commit()
+        # Redirect to the todo page
         return redirect(url_for('todo'))
+    # Render the todo page
     return render_template("todolist.html", form=form, list=toDoItemList, class1=ToDo)
 
+# Delete the todo page
 @app.route("/deleteTodo/<int:id>", methods=["POST", "GET"])
 @login_required
 def deleteToDo(id):
+    # Query the id, set the boolean to true, then commit the changes
     toDoItem = ToDo.query.filter_by(id=id).first()
     toDoItem.done = True
     db.session.commit()
