@@ -7,9 +7,9 @@ from flask_login import UserMixin
 class User(db.Model, UserMixin): 
     # Includes columns for the id, name, username, and password.
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    username = db.Column(db.String(32), nullable=False)
-    password = db.Column(db.String(32), nullable=False)
+    name = db.Column(db.String(100), nullable=True)
+    username = db.Column(db.String(32), nullable=True)
+    password = db.Column(db.String(32), nullable=True)
     
     # Generate a password hash then set it to its password field
     def set_password(self, password):

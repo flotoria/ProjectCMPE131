@@ -92,6 +92,9 @@ def delete():
     db.session.add(deletedUsername)
     # Delete the user from the database then commit those changes
     db.session.delete(u)
+    # Create a dummy user 
+    deletedAccount = User(name=None, username=None, password=None)
+    db.session.add(deletedAccount)
     db.session.commit()
     # Redirect the user back to the login page
     return render_template('delete.html')
