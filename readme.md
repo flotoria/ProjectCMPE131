@@ -32,9 +32,8 @@ http://127.0.0.1:5000
 
 ## How to use
 Start by registering for a new account which will be stored in the database. Then you will be prompted into signing in with the information you have provided. Once that is completed you will reach the dashboard where there are 5 different buttons.
-```
-image.png
-```
+
+
 From there depending on which button you press, you will be taken to different parts of the website which will prompt users to enter the following information to do the specific requirement. 
 
 
