@@ -9,8 +9,8 @@
 
 
 {% for i in list %}
-
+    {% if not i.done %}
     <p>{{ i.description }}     <a href="{{ url_for('deleteToDo', id=i.id) }}"><button>Mark as done</button></a> </p> 
-
+    {% endif %}
 {% endfor %}
     

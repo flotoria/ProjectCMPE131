@@ -10,7 +10,11 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(100), nullable=True)
     username = db.Column(db.String(32), nullable=True)
     password = db.Column(db.String(32), nullable=True)
-    
+
+    # DB relationships with the todos and messages
+    messages = db.relationship('Message', foreign_keys='Message.receiving_user', backref='user_messages', lazy=True)
+    todos = db.relationship('ToDo', backref='user_todos', lazy=True)
+
     # Generate a password hash then set it to its password field
     def set_password(self, password):
         self.password = generate_password_hash(password)
