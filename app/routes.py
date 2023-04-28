@@ -34,7 +34,7 @@ def dashboard():
     # Fetch the user_id of the current user and the current user's messages
     user_id = User.query.filter_by(username=current_user.username).first().id
     # Fetch the user's messages
-    messages = Message.query.filter_by(receiving_user=user_id).all()
+    messages = User.query.filter_by(username=current_user.username).first().messages 
     if form.validate_on_submit(): 
         if form.sortByOptions.data == 'alphabet':
             # Sort the messages by subject in alphabetical order
