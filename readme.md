@@ -11,6 +11,7 @@ Use the packet manager pip to install libraries
 ```
 pip install flask
 pip install flask_sqlalchemy
+pip install sqlalchemy
 pip install flask_login
 pip install werkzeug
 pip install flask_wtf
