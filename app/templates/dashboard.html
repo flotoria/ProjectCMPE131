@@ -6,7 +6,16 @@ You are currently logged in as: {{user.name}}
 <a href="{{ url_for('search') }}"><button>Search</button></a>
 <a href="{{ url_for('todo') }}"><button>To-Do</button></a>
 
-{% for i in messages|reverse %}
+<br>
+
+<form action="" method="POST" novalidate>
+    {{form.hidden_tag()}}
+    {{form.sortByOptions.label}}
+    {{form.sortByOptions()}}    
+    {{form.submit()}}
+</form>
+
+{% for i in messages %}
     <h1>User: {{class1.query.filter_by(id=i.sending_user).first().username}}</h1>
     <p> Timestamp: {{i.timestamp}}</p>
     <p> Subject: {{i.subject}}</p>
