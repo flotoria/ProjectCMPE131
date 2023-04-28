@@ -18,6 +18,7 @@ from flask_login import current_user
 from flask_login import login_user 
 from flask_login import logout_user
 from flask_login import login_required
+from sqlalchemy import collate
 from flask import url_for
 from werkzeug.security import generate_password_hash
 
@@ -38,7 +39,7 @@ def dashboard():
     if form.validate_on_submit(): 
         if form.sortByOptions.data == 'alphabet':
             # Sort the messages by subject in alphabetical order
-            messages = Message.query.filter_by(receiving_user=user_id).order_by(Message.subject).all()
+            messages = Message.query.filter_by(receiving_user=user_id).order_by(collate(Message.subject, 'NOCASE')).all()
         if form.sortByOptions.data == 'oldest':
             # Sort the messages by oldest to newest
             messages = Message.query.filter_by(receiving_user=user_id).order_by(Message.timestamp).all()

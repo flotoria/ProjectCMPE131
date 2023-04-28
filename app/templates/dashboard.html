@@ -16,7 +16,13 @@ You are currently logged in as: {{user.name}}
 </form>
 
 {% for i in messages %}
+
+    {% if class1.query.filter_by(id=i.sending_user).first().username is not defined %}
+    <h1>User: Deleted Account</h1>
+    {% else %}
     <h1>User: {{class1.query.filter_by(id=i.sending_user).first().username}}</h1>
+    {% endif %}
+   
     <p> Timestamp: {{i.timestamp}}</p>
     <p> Subject: {{i.subject}}</p>
     <p> Body: {{i.body}}</p>
