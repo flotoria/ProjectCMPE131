@@ -19,7 +19,7 @@ pip install datetimes
 pip install wtforms
 ```
 
-Initialize the database
+Initialize the database before running the program
 ``` 
 python
 from app import db
