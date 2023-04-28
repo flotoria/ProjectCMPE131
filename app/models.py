@@ -51,4 +51,17 @@ class ToDo(db.Model):
     done = db.Column(db.Boolean, default=False)
 
     user = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+# Deleted accounts database
+class DeletedAccounts(db.Model):
+    # Fields consisting of the id and username
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100), nullable=False)
+
+    # Function to validate whether the username is unique (checks the deleted accounts table)
+    def validateUsername(username):
+        if DeletedAccounts.query.filter_by(username=username).first() == None:
+            return True
+        else:
+            return False
         
