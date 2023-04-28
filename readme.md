@@ -57,7 +57,7 @@ From there depending on which button you press, you will be taken to different p
 ## List of Features
 - Logout - Selecting this button will log you out of the current account that you are using
 - Compose - Selecting this button will bring you into the page for composing a message and from there you would have to input a receiving user, subject of the message, and body to be able to send a message to another user
-- Delete Account - Pressing the deleteaccount  button will delete the user account that you are currently using and get rid of the information inside the database. 
+- Delete Account - Pressing the delete account button will delete the user account that you are currently using and get rid of the information inside the database. 
 - Search - Pressing the search button will allow you to search through the messages that have been sent to you that can be filteted by matching words inside the body and subject. 
 - To-Do - Selecting the To-Do button will allow the user to create a to-do list of tasks that want to accomplish and when they are finished, they can mark it as done.
 - Sort - Selecting the Sort button will allow user to interact with a drop-down bar that can sort the messages in the user's inbox by time and by alphabetical order based on subject. 
