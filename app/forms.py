@@ -1,6 +1,6 @@
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired, ValidationError
 from .models import User 
 
@@ -45,4 +45,6 @@ class ToDoForm(FlaskForm):
     submit = SubmitField('Add')
     close = SubmitField('X')
 
-    
+class SortForm(FlaskForm):
+    sortByOptions = SelectField("Sort Options:", choices=[('alphabet', 'Sort by Alphabetical Order'), ('oldest', 'Sort by Oldest'), ('newest', 'Sort by Newest')])
+    submit = SubmitField('Sort')
