@@ -9,6 +9,7 @@ from .forms import ComposeForm
 from .forms import RegisterForm
 from .forms import SearchForm
 from .forms import SortForm
+from .models import DeletedAccounts
 from .models import User 
 from .models import Message
 from .models import ToDo
@@ -86,6 +87,9 @@ def logout():
 def delete():
     # Fetch the user in the database
     u = User.query.filter_by(id=current_user.id).first()
+    # Add the username to the deleted username table.
+    deletedUsername = DeletedAccounts(username=u.username)
+    db.session.add(deletedUsername)
     # Delete the user from the database then commit those changes
     db.session.delete(u)
     db.session.commit()
@@ -116,7 +120,7 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit(): 
         # If the form is submitted, check if the username is unique and does not exist in the database
-        if form.validate_username(form.username) == True: 
+        if form.validate_username(form.username) and DeletedAccounts.validateUsername(form.username.data) is True: 
             # If so, create a new user object containing the name, the username, the hashed password, and add it to the database.
             user = User(name=form.firstname.data + " " + form.lastname.data, username=form.username.data, password=generate_password_hash(form.password.data))
             # Add the user to the database and then commit the changes
