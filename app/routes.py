@@ -140,8 +140,6 @@ def register():
 @login_required
 def todo():
     form = ToDoForm()
-    # Query all the to do items that are not done and belong to the current user and store them in a list
-    toDoItemList = ToDo.query.filter_by(user=current_user.id, done=False).all()
     if form.validate_on_submit():
         # Add the to do item to the databaes
         toDoItem = ToDo(description=form.task.data, user=current_user.id)
@@ -150,7 +148,7 @@ def todo():
         # Redirect to the todo page
         return redirect(url_for('todo'))
     # Render the todo page
-    return render_template("todolist.html", form=form, list=toDoItemList, class1=ToDo)
+    return render_template("todolist.html", form=form, list=current_user.todos)
 
 # Delete the todo page
 @app.route("/deleteTodo/<int:id>", methods=["POST", "GET"])
@@ -178,5 +176,5 @@ def search():
             # Checks through messages to find matching different in the subject section and body section of the message.
             if message.body.find(searchTerm) != -1 or message.subject.find(searchTerm) != -1:
                 filtered_messages.append(message)
-   #Returns the email that fits the search parameters the user gives
+   # Returns the email that fits the search parameters the user gives
     return render_template("search.html", form=form, filtered=filtered_messages, class1=User)
