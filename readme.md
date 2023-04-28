@@ -41,12 +41,12 @@ http://127.0.0.1:5000
 ```
 ## Technologies
 Project is created with:
-Python version: 3
-Html:
-flask: login, sqlalchemy, wtf
-werkzeug security
-datetimes
-wtforms
+- Python version: 3
+- HTML, CSS
+- flask: login, sqlalchemy, wtf
+- The Werkzeug python library
+- datetimes library
+- wtforms library
 
 ## How to use
 Start by registering for a new account which will be stored in the database. Then you will be prompted into signing in with the information you have provided. Once that is completed you will reach the dashboard where there are 5 different buttons.
