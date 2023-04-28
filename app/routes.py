@@ -7,6 +7,7 @@ from .forms import LoginForm
 from .forms import ComposeForm
 from .forms import RegisterForm
 from .forms import SearchForm
+from .forms import SortForm
 from .models import User 
 from .models import Message
 from .models import ToDo
@@ -24,15 +25,25 @@ def index():
     return render_template('index.html')
 
 # Dashboard route that is only accessible when the user is logged in
-@app.route("/dashboard/")
+@app.route("/dashboard/", methods=['GET', 'POST'])
 @login_required
 def dashboard():
+    form = SortForm()
     # Fetch the user_id of the current user and the current user's messages
     user_id = User.query.filter_by(username=current_user.username).first().id
     messages = Message.query.filter_by(receiving_user=user_id).all()
+    if form.validate_on_submit(): 
+        if form.sortByOptions.data == 'alphabet':
+            messages = Message.query.filter_by(receiving_user=user_id).order_by(Message.subject).all()
+        if form.sortByOptions.data == 'oldest':
+            messages = Message.query.filter_by(receiving_user=user_id).order_by(Message.timestamp).all()
+        if form.sortByOptions.data == 'newest':
+            messages = Message.query.filter_by(receiving_user=user_id).order_by(Message.timestamp).all()
+            messages.reverse()
+
     # Render the dashboard template with the current user object and their messages passed through
     # The User class is passed through in order to do queries on the User table.
-    return render_template('dashboard.html', user=current_user, messages=messages, class1=User)
+    return render_template('dashboard.html', user=current_user, messages=messages, class1=User, form=form)
 
 # Route for composing messages
 @app.route("/compose/", methods=['GET', 'POST'])
