@@ -18,8 +18,8 @@ pip install datetimes
 pip install wtforms
 ```
 
+Initialize the database
 ``` 
-Creating the database to save user information
 python
 from app import db
 from app import app
