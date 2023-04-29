@@ -69,7 +69,7 @@ From there depending on which button you press, you will be taken to different p
 - Marvin Xin - To-do List
 
 ## Project Status
-Currently, our project has a total of 8 functional requirements completetd that are implemeted into our email client. We still have 4 other functional requirements that will needto be implemented including a chatbox, categorizing emails, edit user profile, and a new functional requirement that is still to be determined. Also, our application doesn't have any CSS styling incorporated with it and is primarily focused on functionality and having all the features work smoothly. 
+Currently, our project has a total of 8 functional requirements completed that are implemented into our email client. We still have 4 other functional requirements that will need to be implemented including a chatbox, categorizing emails, edit user profile, and a new functional requirement that is still to be determined. Also, our application doesn't have any CSS styling incorporated with it and is primarily focused on functionality and having all the features work smoothly. 
 
 ## Acknowledgement
 - Ryan Pham (@flotoria)
