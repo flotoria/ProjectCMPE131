@@ -49,10 +49,10 @@ Project is created with:
 - wtforms library
 
 ## How to use
-Start by registering for a new account which will be stored in the database. Then you will be prompted into signing in with the information you have provided. Once that is completed you will reach the dashboard where there are 5 different buttons.
+Start by registering for a new account which will be stored in the database. Then you will be prompted into signing in with the information you have provided. Once that is completed you will reach the dashboard where there are 6 different buttons.
 
 
-From there depending on which button you press, you will be taken to different parts of the website which will prompt users to enter the following information to do the specific requirement. The five buttons consist of Logout, Compose, Delete, Search, Sort, and To-Do which corresponds to the different functional requirements implemented in the application.
+From there depending on which button you press, you will be taken to different parts of the website which will prompt users to enter the following information to do the specific requirement. The six buttons consist of Logout, Compose, Delete, Search, Sort, and To-Do which corresponds to the different functional requirements implemented in the application.
 
 ## List of Features
 - Logout - Selecting this button will log you out of the current account that you are using
