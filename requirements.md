@@ -11,8 +11,8 @@
 8. Felix: Sort Messages/emails
 9. Ryan: Draft emails
 10. Ryan: Create and send messages
-11. Derrick: Send emoticons
-12. Marvin: Categorize emails
+11. Derrick: Attach images
+12. Marvin: Add custom categories
 
 ## Non-functional Requirements
 1. Emails should arrive after 2 seconds
