@@ -15,7 +15,7 @@
 12. Marvin: Add custom categories
 
 ## Non-functional Requirements
-1. Emails should arrive after 2 seconds
+1. Hash all passwords with the SHA1 algorithm
 2. Character count should not exceed 256 characters
 3. Image size limit of 8MBs
 4. Limit amount of people can receive an email to 5 people
