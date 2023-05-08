@@ -1,18 +1,26 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<head>
+<style>
+    .sort {
+        margin-top: 10px;
+    }
+</style>
 <h1>Dashboard</h1>
 You are currently logged in as: {{user.name}}
-<a href="{{ url_for('logout') }}"><button>Logout</button></a>
-<a href="{{ url_for('compose') }}"><button>Compose</button></a>
-<a href="{{ url_for('delete') }}"><button>Delete Account</button></a>
-<a href="{{ url_for('search') }}"><button>Search</button></a>
-<a href="{{ url_for('todo') }}"><button>To-Do</button></a>
+<a href="{{ url_for('logout') }}"><button class="btn btn-primary">Logout</button></a>
+<a href="{{ url_for('compose') }}"><button class="btn btn-primary">Compose</button></a>
+<a href="{{ url_for('delete') }}"><button class="btn btn-primary">Delete Account</button></a>
+<a href="{{ url_for('search') }}"><button class="btn btn-primary">Search</button></a>
+<a href="{{ url_for('todo') }}"><button class="btn btn-primary">To-Do</button></a>
 
 <br>
 
-<form action="" method="POST" novalidate>
+<form class="sort" action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     {{form.sortByOptions.label}}
     {{form.sortByOptions()}}    
-    {{form.submit()}}
+    {{form.submit(class="btn btn-primary")}}
 </form>
 
 {% for i in messages %}

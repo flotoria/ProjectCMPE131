@@ -1,10 +1,37 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        
+        h1 {
+            margin-top: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .form1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+        }
+        .register-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
 <h1>Sign In</h1>
 
 {% for message in get_flashed_messages() %}
     <p>{{ message }}</p>
 {% endfor %}
 
-<form action="" method="POST" novalidate>
+<form class="form1" action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p> {{form.username.label}} <br>
        {{form.username(size=32)}}</p>
@@ -12,8 +39,12 @@
     <p> {{form.password.label}} <br>
        {{form.password(size=32)}}</p>
 
-    <p>{{form.submit()}}</p>
+    <p>{{form.submit(class="btn btn-primary")}}</p>
 </form>
 
 
-Need to create an account? <a href="{{ url_for('register') }}">Click here.</a>
+<div class="register-text">
+    Need to create an account? <a href="{{ url_for('register') }}">Click here.</a>
+</div>
+
+</body>

@@ -1,4 +1,35 @@
-<h1>Cheese Mail</h1>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        h1 {
+            width: 30%;
+        }
+        .feature1 {
+            flex: auto;
+            flex-direction: row;
+            display: flex;
+            align-items: center;
+        }
+ 
 
-<a href="{{ url_for('login') }}"><button>Login</button></a>
-<a href="{{ url_for('register') }}"><button>Register</button></a>
+    </style>
+</head>
+
+
+<header>
+    <h1>
+    <img src="../static/images/logo.png"></img>
+    Cheese Mail</h1>
+</header>
+
+<div class="feature1">
+    <p>Safe and secure messaging system. Created by the people for the people.</p>
+    
+</div>
+
+<a href="{{ url_for('login') }}"><button class="btn btn-primary">Login</button></a>
+<a href="{{ url_for('register') }}"><button class="btn btn-primary">Register</button></a>
+
+<footer>
+    <a target="_blank" href="https://icons8.com/icon/xst4tEXfEe8Y/cheese">Cheese</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+</footer>

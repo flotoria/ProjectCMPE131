@@ -1,16 +1,26 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        .task-input {
+            width: 50%;
+        }
+    </style>
+<head>
+
+
 <h1>To-Do List</h1>
-<a href="{{ url_for('dashboard') }}"><button>Back</button></a>
+<a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>
 <form action="" method="POST" novalidate>   
     {{form.hidden_tag()}}
     <p> {{form.task.label}} <br>
-        {{form.task(size=1000)}}</p>
-     <p>{{form.submit()}}</p>
+        {{form.task(size=256, class="task-input")}}</p>
+     <p>{{form.submit(class="btn btn-primary")}}</p>
 </form>
 
 
 {% for i in list %}
     {% if not i.done %}
-    <p>{{ i.description }}     <a href="{{ url_for('deleteToDo', id=i.id) }}"><button>Mark as done</button></a> </p> 
+    <p>{{ i.description }}     <a href="{{ url_for('deleteToDo', id=i.id) }}"><button class="btn btn-secondary">Mark as done</button></a> </p> 
     {% endif %}
 {% endfor %}
     

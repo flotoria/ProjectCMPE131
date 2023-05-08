@@ -1,15 +1,18 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        .message-body {
+            width: 50%;
+        }
+    </style>
+<head>
+
+<body>
 <h1>Send</h1>
 
-<a href="{{ url_for('dashboard') }}"><button>Back</button></a>
+<a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>
 
-<style>
-    .body-input {
-        width: 50vh;
-        height: 300px;
-        border-style: solid;
-        border-width: 30px;
-    }
-</style>
+
 
 {% for message in get_flashed_messages() %}
     <p>{{ message }}</p>
@@ -25,8 +28,10 @@
 
     <p> {{form.body.label}} <br>
 
-        {{form.body(size=1000)}}
+        {{form.body(size=256, class="message-body")}}
     </p>
 
-    <p>{{form.submit()}}</p>
+    <p>{{form.submit(class="btn btn-primary")}}</p>
 </form>
+
+</body>
