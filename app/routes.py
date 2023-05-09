@@ -11,6 +11,7 @@ from .forms import ComposeForm
 from .forms import RegisterForm
 from .forms import SearchForm
 from .forms import SortForm
+from .models import Drafts
 from .models import DeletedAccounts
 from .models import User 
 from .models import Message
@@ -61,18 +62,33 @@ def dashboard():
 def compose():
     form = ComposeForm()
     if form.validate_on_submit(): 
-        if User.query.filter_by(username=form.receiving_username.data).first() is not None:
-            # When the form is submitted, a message object containing the subject, body, sending user, and receiving user is created.
-            # The timestamp is automatically generated at time of creation.
-            dateAndTime = datetime.now()
-            message = Message(subject=form.subject.data, body=form.body.data, sending_user=current_user.id, receiving_user=User.query.filter_by(username=form.receiving_username.data).first().id, timestamp=dateAndTime)
-            # Add the message to the database and commit the changes
-            db.session.add(message)
-            db.session.commit()
-            # Redirect the user to the dashboard afterwards
-            return redirect(url_for('dashboard'))
+        # Check if the submit button is being clicked
+        if form.submit.data:
+            if User.query.filter_by(username=form.receiving_username.data).first() is not None:
+                # When the form is submitted, a message object containing the subject, body, sending user, and receiving user is created.
+                # The timestamp is automatically generated at time of creation.
+                dateAndTime = datetime.now()
+                message = Message(subject=form.subject.data, body=form.body.data, sending_user=current_user.id, receiving_user=User.query.filter_by(username=form.receiving_username.data).first().id, timestamp=dateAndTime)
+                # Add the message to the database and commit the changes
+                db.session.add(message)
+                db.session.commit()
+                # Redirect the user to the dashboard afterwards
+                return redirect(url_for('dashboard'))
+            else:
+                flash("User does not exist")
         else:
-            flash("User does not exist")
+            if User.query.filter_by(username=form.receiving_username.data).first() is not None:
+                # When the form is submitted, a message object containing the subject, body, sending user, and receiving user is created.
+                # The timestamp is automatically generated at time of creation.
+                dateAndTime = datetime.now()
+                draft = Drafts(subject=form.subject.data, body=form.body.data, sending_user=current_user.id, receiving_user=User.query.filter_by(username=form.receiving_username.data).first().id, timestamp=dateAndTime)
+                # Add the message to the database and commit the changes
+                db.session.add(draft)
+                db.session.commit()
+                # Redirect the user to the dashboard afterwards
+                return redirect(url_for('dashboard'))
+            else:
+                flash("User does not exist")
     # Return the render template of the compose page
     return render_template('compose.html', user=current_user, form=form)
 
@@ -93,12 +109,8 @@ def delete():
     u = User.query.filter_by(id=current_user.id).first()
     # Add the username to the deleted username table.
     deletedUsername = DeletedAccounts(username=u.username)
-    db.session.add(deletedUsername)
-    # Delete the user from the database then commit those changes
-    db.session.delete(u)
-    # Create a dummy user 
-    deletedAccount = User(name=None, username=None, password=None)
-    db.session.add(deletedAccount)
+    u.username = None
+    u.password = None
     db.session.commit()
     # Redirect the user back to the login page
     return render_template('delete.html')
@@ -192,3 +204,20 @@ def handle_message(message):
 def chat():
     return render_template('chat.html', username=current_user.username)
 
+@app.route('/drafts/', methods=['GET', 'POST'])
+@login_required
+def draft():
+    return render_template('drafts.html', drafts=Drafts.query.filter_by(sending_user=current_user.id, visible=True).all(), class1=User)
+
+@app.route('/sendDraft/<int:id>', methods=['GET', 'POST'])
+def sendDraft(id):
+    if Drafts.query.filter_by(id=id).first().receiving_user == current_user.id:
+        time = datetime.now()
+        draft = Drafts.query.filter_by(id=id).first()
+        draft.visible = False
+        message = Message(subject=draft.subject, body=draft.body, sending_user=draft.sending_user, receiving_user=draft.receiving_user, timestamp=time)
+        db.session.add(message)
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+    else:
+        return redirect(url_for('drafts'))

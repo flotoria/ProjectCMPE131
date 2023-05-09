@@ -1,0 +1,15 @@
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<head>
+
+
+<h1>Drafts</h1>
+<a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>
+{% for i in drafts %}
+<h1>Receiver: {{class1.query.filter_by(id=i.receiving_user).first().username}}</h1>
+<p> Timestamp: {{i.timestamp}}</p>
+<p> Subject: {{i.subject}}</p>
+<p> Body: {{i.body}}</p>
+<a href="{{ url_for('sendDraft', id=i.id) }}"><button class="btn btn-secondary">Send draft</button></a> </p> 
+{% endfor %}
