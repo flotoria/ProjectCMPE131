@@ -17,6 +17,7 @@ pip install werkzeug
 pip install flask_wtf
 pip install datetimes
 pip install wtforms
+pip install flask_socketio
 ```
 
 Initialize the database before running the program
@@ -61,9 +62,10 @@ From there depending on which button you press, you will be taken to different p
 - Search - Pressing the search button will allow you to search through the messages that have been sent to you that can be filteted by matching words inside the body and subject. 
 - To-Do - Selecting the To-Do button will allow the user to create a to-do list of tasks that want to accomplish and when they are finished, they can mark it as done.
 - Sort - Selecting the Sort button will allow user to interact with a drop-down bar that can sort the messages in the user's inbox by time and by alphabetical order based on subject. 
+- Public Chat - Be able to interact with other users in Cheese Mail's public chatroom
 
 ## Requirements Completed 
-- Ryan Pham - Login/Logout, Compose Messages, and Delete User
+- Ryan Pham - Login/Logout, Compose Messages, Delete User, Chatbox
 - Derrick Chan - Registration and Search Messages
 - Felix Vo - Sort Messages
 - Marvin Xin - To-do List

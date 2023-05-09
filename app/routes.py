@@ -1,8 +1,10 @@
 from app import app
 from app import db
+from app import socketio
 from flask import render_template
 from flask import redirect
 from flask import flash
+from flask import session
 from datetime import datetime
 from .forms import LoginForm
 from .forms import ComposeForm
@@ -21,6 +23,7 @@ from flask_login import login_required
 from sqlalchemy import collate
 from flask import url_for
 from werkzeug.security import generate_password_hash
+from flask_socketio import SocketIO, send
 
 # Main page for registering / login
 @app.route("/")
@@ -179,3 +182,13 @@ def search():
                 filtered_messages.append(message)
    # Returns the email that fits the search parameters the user gives
     return render_template("search.html", form=form, filtered=filtered_messages, class1=User)
+
+@socketio.on('message')
+def handle_message(message):
+    send(message, broadcast=True)
+
+@app.route('/chat', methods=['GET', 'POST'])
+@login_required
+def chat():
+    return render_template('chat.html', username=current_user.username)
+
