@@ -3,7 +3,7 @@
 ## Functional Requirements
 1. Ryan: Login
 2. Marvin: To-do list
-3. Felix: Chatbox (direct message others)
+3. Felix: Public chatbox 
 4. Felix: Recycle and permanently delete emails
 5. Derrick: User registration
 6. Marvin: Edit User Profile
