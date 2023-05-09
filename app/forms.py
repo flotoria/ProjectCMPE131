@@ -42,6 +42,8 @@ class ComposeForm(FlaskForm):
     body = StringField('Message', validators=[DataRequired()])
     # Submit button
     submit = SubmitField('Send')
+    # Draft button
+    draft = SubmitField('Save as Draft')
 
 # Flask form for submitting a search query
 class SearchForm(FlaskForm):

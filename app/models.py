@@ -32,7 +32,7 @@ class Message(db.Model):
     # Includes columns for the id, subject, body, and the timestamp.
     id = db.Column(db.Integer, primary_key=True)
     subject = db.Column(db.String(256), nullable=False) 
-    body = db.Column(db.String(1000))
+    body = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, nullable=False)
 
     # Include columns for the sending and receiving user.
@@ -68,4 +68,17 @@ class DeletedAccounts(db.Model):
             return True
         else:
             return False
-        
+
+class Drafts(db.Model):
+     # Includes columns for the id, subject, body, and the timestamp.
+    id = db.Column(db.Integer, primary_key=True)
+    subject = db.Column(db.String(256), nullable=False) 
+    body = db.Column(db.String(256))
+    timestamp = db.Column(db.DateTime, nullable=False)
+
+    # Include columns for the sending and receiving user.
+    sending_user = db.Column(db.Integer)
+    receiving_user = db.Column(db.Integer)
+
+    # Visiblity
+    visible = db.Column(db.Boolean, default=True)
