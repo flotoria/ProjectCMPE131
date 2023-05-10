@@ -18,7 +18,7 @@
     <p>{{ message }}</p>
 {% endfor %}
 
-<form action="" method="POST" novalidate>
+<form action="" method="POST" novalidate enctype="multipart/form-data">
     {{form.hidden_tag()}}
     <p> {{form.receiving_username.label}} <br>
        {{form.receiving_username(size=100)}}</p>
@@ -30,6 +30,8 @@
 
         {{form.body(size=256, class="message-body")}}
     </p>
+
+    <p>{{form.file()}}</p>
 
     <p>{{form.submit(class="btn btn-primary")}}
 
