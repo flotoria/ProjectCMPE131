@@ -5,6 +5,7 @@ from flask import render_template
 from flask import redirect
 from flask import flash
 from flask import session
+from flask import request
 from datetime import datetime
 from .forms import LoginForm
 from .forms import ComposeForm
@@ -221,3 +222,18 @@ def sendDraft(id):
         return redirect(url_for('dashboard'))
     else:
         return redirect(url_for('drafts'))
+
+@app.route('/editprofile/<int:id>', methods=['GET', 'POST'])
+@login_required
+def editprofile(id):
+    form = editProfile()
+    updated =  User.query.get(id)
+    request.method == "POST"
+    updated.username == request.form['Username']
+    updated.name = request.form['Name']
+    updated.lastname = request.form['Last Name']
+    updated.password = request.form['Password']
+    
+
+
+
