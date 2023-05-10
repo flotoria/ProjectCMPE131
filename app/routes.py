@@ -18,6 +18,7 @@ from .models import User
 from .models import Message
 from .models import ToDo
 from .forms import ToDoForm
+from .forms import editProfile
 from werkzeug.utils import secure_filename
 from flask_login import current_user
 from flask_login import login_user 
@@ -238,17 +239,26 @@ def sendDraft(id):
     else:
         return redirect(url_for('drafts'))
 
-@app.route('/editprofile/<int:id>', methods=['GET', 'POST'])
+
+@app.route('/editProfile/<int:id>', methods=['GET', 'POST'])
 @login_required
 def editprofile(id):
     form = editProfile()
-    updated =  User.query.get(id)
-    request.method == "POST"
-    updated.username == request.form['Username']
-    updated.name = request.form['Name']
-    updated.lastname = request.form['Last Name']
-    updated.password = request.form['Password']
-    
-
-
-
+    updated =  User.query.get(int(id))
+    # POST request "are used for form submissions"
+    if request.method == "POST":
+        # When user hits submit button
+        if form.validate_on_submit():
+            updated.usernames == request.form['Username']
+            updated.names = request.form['Name']
+            updated.lastnames = request.form['Last Name']
+            # Commits changes to the database
+            db.session.commit()
+            flash("User has been updated!")
+            return redirect(url_for('dashboard'))
+        else:
+            flash("An error has occured")
+            return redirect(url_for('dashboard'))
+        
+        # Return the template of editprofile.html
+    return render_template('editprofile.html', form=form, updated=updated, id=id)

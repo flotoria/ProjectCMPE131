@@ -19,6 +19,7 @@ You are currently logged in as: {{user.name}}
 <a href="{{ url_for('todo') }}"><button class="btn btn-primary">To-Do</button></a>
 <a href="{{ url_for('chat') }}"><button class="btn btn-primary">Public Chat</button></a>
 <a href="{{ url_for('draft') }}"><button class="btn btn-primary">Drafts</button></a>
+<a href="{{ url_for('editprofile', id=user.id) }}"><button class="btn btn-primary">Edit Profile</button></a>
 
 <br>
 

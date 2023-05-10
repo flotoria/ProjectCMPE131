@@ -2,7 +2,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, FileField
 from wtforms.validators import DataRequired, ValidationError
-from .models import User  
+from .models import User
 
 # Flask form for the login page
 class LoginForm(FlaskForm):
@@ -67,8 +67,7 @@ class SortForm(FlaskForm):
     submit = SubmitField('Sort')
 
 class editProfile(FlaskForm):
-    names = StringField('Enter a new Name', validators=[DataRequired()])
-    lastnames = StringField('Enter a new Last Name', validaors=[DataRequired()])
-    usernames = StringField('Enter new Username', validators=[DataRequired()])
-    password = StringField('Enter a new Password', validators=[DataRequired()])
-    submit = SubmitField('Submit Changes')
+    names = StringField('Enter a new name', validators=[DataRequired()])
+    lastnames = StringField('Enter a new last name', validators=[DataRequired()])
+    usernames = StringField('Enter a new Username', validators=[DataRequired()])
+    submit = SubmitField('Submit  Changes')
