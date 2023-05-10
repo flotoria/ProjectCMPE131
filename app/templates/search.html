@@ -17,5 +17,8 @@
     <p> Timestamp: {{i.timestamp}}</p>
     <p> Subject: {{i.subject}}</p>
     <p> Body: {{i.body}}</p>
+    {% if i.filePath is not none %}
+    <p><img id="img-file" src="{{i.filePath}}"> </p>
+    {% endif %}
     {% endfor %}
 </form>
