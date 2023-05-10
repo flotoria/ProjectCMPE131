@@ -5,6 +5,10 @@
     .sort {
         margin-top: 10px;
     }
+    #img-file {
+        max-width: 300px;
+        max-height: 300px;
+    }
 </style>
 <h1>Dashboard</h1>
 You are currently logged in as: {{user.name}}
@@ -36,4 +40,7 @@ You are currently logged in as: {{user.name}}
     <p> Timestamp: {{i.timestamp}}</p>
     <p> Subject: {{i.subject}}</p>
     <p> Body: {{i.body}}</p>
+    {% if i.filePath is not none %}
+        <p><img id="img-file" src="{{i.filePath}}"> </p>
+    {% endif %}
 {% endfor %}

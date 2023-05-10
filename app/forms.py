@@ -1,8 +1,8 @@
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, FileField
 from wtforms.validators import DataRequired, ValidationError
-from .models import User 
+from .models import User  
 
 # Flask form for the login page
 class LoginForm(FlaskForm):
@@ -40,6 +40,8 @@ class ComposeForm(FlaskForm):
     receiving_username = StringField('Receiving User', validators=[DataRequired()])
     subject = StringField('Subject', validators=[DataRequired()])
     body = StringField('Message', validators=[DataRequired()])
+    # File upload field
+    file = FileField('Upload file here')
     # Submit button
     submit = SubmitField('Send')
     # Draft button

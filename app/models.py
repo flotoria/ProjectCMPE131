@@ -34,6 +34,7 @@ class Message(db.Model):
     subject = db.Column(db.String(256), nullable=False) 
     body = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, nullable=False)
+    filePath = db.Column(db.String(1000), nullable=True)
 
     # Include columns for the sending and receiving user.
     sending_user = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -75,6 +76,7 @@ class Drafts(db.Model):
     subject = db.Column(db.String(256), nullable=False) 
     body = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, nullable=False)
+    filePath = db.Column(db.String(1000), nullable=True)
 
     # Include columns for the sending and receiving user.
     sending_user = db.Column(db.Integer)
@@ -82,3 +84,4 @@ class Drafts(db.Model):
 
     # Visiblity
     visible = db.Column(db.Boolean, default=True)
+
