@@ -63,3 +63,10 @@ class SortForm(FlaskForm):
     sortByOptions = SelectField("Sort Options:", choices=[('alphabet', 'Sort by Alphabetical Order'), ('oldest', 'Sort by Oldest'), ('newest', 'Sort by Newest')])
     # Submit button
     submit = SubmitField('Sort')
+
+class editProfile(FlaskForm):
+    names = StringField('Enter a new Name', validators=[DataRequired()])
+    lastnames = StringField('Enter a new Last Name', validaors=[DataRequired()])
+    usernames = StringField('Enter new Username', validators=[DataRequired()])
+    password = StringField('Enter a new Password', validators=[DataRequired()])
+    submit = SubmitField('Submit Changes')
