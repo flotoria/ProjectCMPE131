@@ -66,8 +66,8 @@ class SortForm(FlaskForm):
     # Submit button
     submit = SubmitField('Sort')
 
-class editProfile(FlaskForm):
-    names = StringField('Enter a new name', validators=[DataRequired()])
-    lastnames = StringField('Enter a new last name', validators=[DataRequired()])
-    usernames = StringField('Enter a new Username', validators=[DataRequired()])
-    submit = SubmitField('Submit  Changes')
+class EditProfile(FlaskForm):
+    name = StringField('New Name')
+    username = StringField('New Username')
+    password = StringField('New Password')
+    submit = SubmitField('Submit Changes')

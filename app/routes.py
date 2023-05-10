@@ -18,7 +18,7 @@ from .models import User
 from .models import Message
 from .models import ToDo
 from .forms import ToDoForm
-from .forms import editProfile
+from .forms import EditProfile
 from werkzeug.utils import secure_filename
 from flask_login import current_user
 from flask_login import login_user 
@@ -128,6 +128,7 @@ def delete():
     deletedUsername = DeletedAccounts(username=u.username)
     u.username = None
     u.password = None
+    db.session.add(deletedUsername)
     db.session.commit()
     # Redirect the user back to the login page
     return render_template('delete.html')
@@ -240,25 +241,22 @@ def sendDraft(id):
         return redirect(url_for('drafts'))
 
 
-@app.route('/editProfile/<int:id>', methods=['GET', 'POST'])
+@app.route('/editProfile/', methods=['GET', 'POST'])
 @login_required
-def editprofile(id):
-    form = editProfile()
-    updated =  User.query.get(int(id))
+def editprofile():
+    form = EditProfile()
+    current = User.query.filter_by(id=current_user.id).first()
     # POST request "are used for form submissions"
-    if request.method == "POST":
-        # When user hits submit button
-        if form.validate_on_submit():
-            updated.usernames == request.form['Username']
-            updated.names = request.form['Name']
-            updated.lastnames = request.form['Last Name']
-            # Commits changes to the database
-            db.session.commit()
-            flash("User has been updated!")
-            return redirect(url_for('dashboard'))
-        else:
-            flash("An error has occured")
-            return redirect(url_for('dashboard'))
-        
-        # Return the template of editprofile.html
-    return render_template('editprofile.html', form=form, updated=updated, id=id)
+    # When user hits submit button
+    if form.validate_on_submit():
+        if form.name.data != "":
+            current.name = form.name.data
+        if form.username.data != "" and User.query.filter_by(name=form.username.data).first() is None:
+            current.username = form.username.data
+        if form.password.data != "":
+            current.password = generate_password_hash(form.password.data)
+        # Commits changes to the database
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+    print(current.username)
+    return render_template('editprofile.html', form=form)
