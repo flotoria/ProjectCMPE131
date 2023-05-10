@@ -2,7 +2,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, FileField
 from wtforms.validators import DataRequired, ValidationError
-from .models import User  
+from .models import User
 
 # Flask form for the login page
 class LoginForm(FlaskForm):
@@ -65,3 +65,9 @@ class SortForm(FlaskForm):
     sortByOptions = SelectField("Sort Options:", choices=[('alphabet', 'Sort by Alphabetical Order'), ('oldest', 'Sort by Oldest'), ('newest', 'Sort by Newest')])
     # Submit button
     submit = SubmitField('Sort')
+
+class EditProfile(FlaskForm):
+    name = StringField('New Name')
+    username = StringField('New Username')
+    password = StringField('New Password')
+    submit = SubmitField('Submit Changes')

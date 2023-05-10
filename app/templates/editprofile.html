@@ -1,0 +1,23 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<head>
+
+
+<h1>Edit User Profile</h1>
+<a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>
+
+<form action="" method="POST" novalidate>
+    {{form.hidden_tag()}}
+    
+    <p> {{form.name.label}} <br>
+        {{form.name(size=35)}}</p>
+
+    <p> {{form.username.label}} <br>
+    {{form.username(size=35)}}</p>
+
+    <p> {{form.password.label}} <br>
+        {{form.password(size=35)}}</p>
+    
+
+    <p>{{form.submit(class="btn btn-primary")}}</p>
+</form>

@@ -5,6 +5,7 @@ from flask import render_template
 from flask import redirect
 from flask import flash
 from flask import session
+from flask import request
 from datetime import datetime
 from .forms import LoginForm
 from .forms import ComposeForm
@@ -17,6 +18,7 @@ from .models import User
 from .models import Message
 from .models import ToDo
 from .forms import ToDoForm
+from .forms import EditProfile
 from werkzeug.utils import secure_filename
 from flask_login import current_user
 from flask_login import login_user 
@@ -126,6 +128,7 @@ def delete():
     deletedUsername = DeletedAccounts(username=u.username)
     u.username = None
     u.password = None
+    db.session.add(deletedUsername)
     db.session.commit()
     # Redirect the user back to the login page
     return render_template('delete.html')
@@ -236,3 +239,24 @@ def sendDraft(id):
         return redirect(url_for('dashboard'))
     else:
         return redirect(url_for('drafts'))
+
+
+@app.route('/editProfile/', methods=['GET', 'POST'])
+@login_required
+def editprofile():
+    form = EditProfile()
+    current = User.query.filter_by(id=current_user.id).first()
+    # POST request "are used for form submissions"
+    # When user hits submit button
+    if form.validate_on_submit():
+        if form.name.data != "":
+            current.name = form.name.data
+        if form.username.data != "" and User.query.filter_by(name=form.username.data).first() is None:
+            current.username = form.username.data
+        if form.password.data != "":
+            current.password = generate_password_hash(form.password.data)
+        # Commits changes to the database
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+    print(current.username)
+    return render_template('editprofile.html', form=form)
