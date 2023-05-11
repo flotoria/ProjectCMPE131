@@ -7,10 +7,14 @@
             max-width: 300px;
             max-height: 300px;
         }
+        body {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
     </style>
 <head>
 
-
+<body>
     <h1>Sent</h1>
 
     <a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>
@@ -18,14 +22,14 @@
 {% for i in messages %}
     {% if i.subject is defined and not i.recycled %}
         {% if class1.query.filter_by(id=i.receiving_user).first().username is not defined %}
-        <h1>User: Deleted Account</h1> 
+        <h3>User: Deleted Account</h3> 
         {% else %}
-        <h1>User: {{class1.query.filter_by(id=i.receiving_user).first().username}}</h1> 
+        <h3>User: {{class1.query.filter_by(id=i.receiving_user).first().username}}</h3> 
         {% endif %}
     
-        <p> Timestamp: {{i.timestamp}}</p>
-        <p> Subject: {{i.subject}}</p>
-        <p> Body: {{i.body}}</p>
+        <p> <h5> Timestamp: </h5> {{i.timestamp}}</p>
+        <p> <h5> Subject: </h5> {{i.subject}}</p>
+        <p> <h5>Body: </h5> {{i.body}}</p>
         {% if i.filePath is not none %}
             <p><img id="img-file" src="{{i.filePath}}"> </p>
     {% endif %}
@@ -33,3 +37,5 @@
 
     
 {% endfor %}
+
+</body>

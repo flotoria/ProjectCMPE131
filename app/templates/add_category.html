@@ -2,13 +2,20 @@
 
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        body {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+    </style>
 <head>
 
   <a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>
 
+  <body>
 
   <form action="" method="POST" novalidate>
-    <p> Select a category: </p>
+    <strong> Select a category: </strong>
     <select name="categories" id="categories">
         {% for i in categories %}
         <option value="{{i.id}}">{{ i.categoryName }} </option>
@@ -17,3 +24,5 @@
 
       <input class="btn btn-primary" type="submit" value="Submit">
     </form>
+
+  </body>
