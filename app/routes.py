@@ -19,6 +19,7 @@ from .models import Message
 from .models import ToDo
 from .forms import ToDoForm
 from .forms import EditProfile
+from .forms import DeleteMessage
 from werkzeug.utils import secure_filename
 from flask_login import current_user
 from flask_login import login_user 
@@ -260,3 +261,22 @@ def editprofile():
         return redirect(url_for('dashboard'))
     print(current.username)
     return render_template('editprofile.html', form=form)
+
+@app.route('/deletemessage/', methods=['GET', 'POST'])
+@login_required
+def deletemessage():
+    form = DeleteMessage()
+    subjectfordeletion = form.subject.data
+    if form.validate_on_submit():
+        # Checks both the user's id and the message within the database to filter the user who composed the message and the receiver
+        user_id = User.query.filter_by(username=current_user.username).first().id
+        messages = Message.query.filter_by(receiving_user=user_id).all()
+        for message in messages: 
+            # Checks through messages to find matching different in the subject section and body section of the message.
+            if message.body.find(subjectfordeletion) != -1 or message.subject.find(subjectfordeletion) != -1:
+                db.session.delete(message).first()
+                db.session.commit()
+    ##message = Message.query.filter_by(subject = Message.subject).first()
+    ##db.session.delete(message)
+    ##db.session.commit()
+    return render_template("deletemessage.html", form=form, class1=User)
