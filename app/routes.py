@@ -219,18 +219,23 @@ def search():
 def handle_message(message):
     send(message, broadcast=True)
 
+# Route to the chat page
 @app.route('/chat', methods=['GET', 'POST'])
 @login_required
 def chat():
     return render_template('chat.html', username=current_user.username)
 
+# Route to the draft page 
 @app.route('/drafts/', methods=['GET', 'POST'])
 @login_required
 def draft():
+    # Return drafts.html with the user's drafts as a parameter
     return render_template('drafts.html', drafts=Drafts.query.filter_by(sending_user=current_user.id, visible=True).all(), class1=User)
 
+# Route that allows the user to send a draft
 @app.route('/sendDraft/<int:id>', methods=['GET', 'POST'])
 def sendDraft(id):
+    # If the draft is the user's draft, send the draft; otherwise, redirect to the drafts page
     if Drafts.query.filter_by(id=id).first().receiving_user == current_user.id:
         time = datetime.now()
         draft = Drafts.query.filter_by(id=id).first()
@@ -242,7 +247,7 @@ def sendDraft(id):
     else:
         return redirect(url_for('drafts'))
 
-
+# Route that allows the user to edit the profile
 @app.route('/editProfile/', methods=['GET', 'POST'])
 @login_required
 def editprofile():
@@ -251,6 +256,7 @@ def editprofile():
     # POST request "are used for form submissions"
     # When user hits submit button
     if form.validate_on_submit():
+        # Depending on which fields are not empty, change the user's data depending on which fields are not empty
         if form.name.data != "":
             current.name = form.name.data
         if form.username.data != "" and User.query.filter_by(name=form.username.data).first() is None:
@@ -264,6 +270,7 @@ def editprofile():
     return render_template('editprofile.html', form=form)
 
 
+# Route for the categories page
 @app.route('/categories/', methods=['GET', 'POST'])
 @login_required
 def categories(): 
@@ -271,29 +278,35 @@ def categories():
     categoryValue = request.form.get('filter')
     filteredCategories = userCategories
     form = CategoryForm() 
+    # If it's a post request
     if request.method == 'POST':
         if form.validate_on_submit():
+            # Add the category to the database
             if form.name.data != "":
                 category = Categories(categoryName=form.name.data, userID=current_user.id)
                 db.session.add(category)
                 db.session.commit()
                 return redirect(url_for('categories'))
+        # If the user wants to filter the categories, filter it depending on the user input
         if categoryValue == "All":
             filteredCategories = userCategories
         else:
             category = Categories.query.filter_by(id=int(categoryValue)).first()
             filteredCategories=[category]
         
-
+    # Render the categories.html page with the form, the user's categories, and the filtered categories
     return render_template('categories.html', form=form, userCategories=userCategories, filteredCategories=filteredCategories, class1=User)
 
 
+# Route for the backend that just links a message to a certain category
 @app.route('/addCategory/<int:messageID>', methods=['GET', 'POST'])
 @login_required
 def addCategory(messageID): 
     userCategories = Categories.query.filter_by(userID=current_user.id).all()
     message = Message.query.filter_by(id=messageID).first()
+    # If it's a post request
     if request.method == 'POST': 
+        # Link the message to the category
         value = request.form.get('categories')
         category = Categories.query.filter_by(id=int(value)).first()
         message.message_category = category 
@@ -302,9 +315,11 @@ def addCategory(messageID):
         return redirect(url_for('dashboard'))
     return render_template('add_category.html', categories=userCategories)
 
+# Route for the backend that deletes a message
 @app.route('/deleteMessage/<int:messageID>', methods=['GET', 'POST'])
 @login_required
 def deleteMessage(messageID): 
+    # Wipes all data related to the message and unlink the message from any categories
     message = Message.query.filter_by(id=messageID).first()
     message.subject = None
     message.body = None
@@ -317,24 +332,30 @@ def deleteMessage(messageID):
     db.session.commit()
     return redirect(url_for('dashboard'))
 
+# Recycle messages
 @app.route('/recycleMessage/<int:messageID>', methods=['GET', 'POST'])
 @login_required
 def recycleMessage(messageID): 
+    # Recycle the message by setting the recycled attribute to true
     message = Message.query.filter_by(id=messageID).first()
     message.recycled = True
     db.session.commit()
     return redirect(url_for('dashboard'))
 
+# Route for the recycle bin page
 @app.route('/recyclelist', methods=['GET', 'POST'])
 @login_required
 def recycleList(): 
+    # Grab all the messages that have been recycled and display them on the recycle.html page
     messages = Message.query.filter_by(receiving_user=current_user.id, recycled=True).all()
     return render_template('recycle.html', messages=messages, class1=User)
 
+# Backend route that unrecycles a message
 @app.route('/unrecycleMessage/<int:messageID>', methods=['GET', 'POST'])
 @login_required
 def unrecycleMessage(messageID): 
     message = Message.query.filter_by(id=messageID).first()
+    # Sets the recycled attribute to false
     message.recycled = False
     db.session.commit()
     return redirect(url_for('dashboard'))

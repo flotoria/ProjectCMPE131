@@ -89,7 +89,9 @@ class Drafts(db.Model):
     visible = db.Column(db.Boolean, default=True)
 
 
+# Categories table 
 class Categories(db.Model):
+    # Includes the id for the category, the category name, the user associated with the category, and the messages associated with that category
     id = db.Column(db.Integer, primary_key=True)
     categoryName = db.Column(db.String(100))
     userID = db.Column(db.Integer)

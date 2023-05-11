@@ -66,12 +66,14 @@ class SortForm(FlaskForm):
     # Submit button
     submit = SubmitField('Sort')
 
+# Edit fields for the name, usernames, and password
 class EditProfile(FlaskForm):
     name = StringField('New Name')
     username = StringField('New Username')
     password = StringField('New Password')
     submit = SubmitField('Submit Changes')
 
+# Category Form to create categories
 class CategoryForm(FlaskForm):
     name = StringField('Category Name')
     submit = SubmitField('Create Category')
