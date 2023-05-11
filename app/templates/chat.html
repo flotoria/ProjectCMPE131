@@ -11,6 +11,9 @@
     </style>
 </head>
 <body>
+    
+
+    
     <script type="text/javascript">
        $(document).ready(function() {
             var socket = io.connect("http://localhost:5000");
@@ -29,6 +32,7 @@
     </script>
 
     <h1>Chat</h1>
+    <a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>
     <div id="messages"></div>
     <input type="text" id="message" value="" required>
     <button id="send" class="btn btn-primary">Send</button>
