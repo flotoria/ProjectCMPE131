@@ -262,8 +262,12 @@ def editprofile():
         # Depending on which fields are not empty, change the user's data depending on which fields are not empty
         if form.name.data != "":
             current.name = form.name.data
-        if form.username.data != "" and User.query.filter_by(name=form.username.data).first() is None:
+        if form.username.data != "" and User.query.filter_by(username=form.username.data).first() is None and DeletedAccounts.validateUsername(form.username.data) is True:
+            print(User.query.filter_by(name=form.username.data).first() )
             current.username = form.username.data
+        else:
+            flash("Username already exists!")
+            return redirect(url_for('editprofile'))
         if form.password.data != "":
             current.password = generate_password_hash(form.password.data)
         # Commits changes to the database
