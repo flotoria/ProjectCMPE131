@@ -9,9 +9,15 @@
         max-width: 300px;
         max-height: 300px;
     }
+    body {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
 </style>
+
+<body>
 <h1>Dashboard</h1>
-You are currently logged in as: {{user.name}}
+You are currently logged in as: {{user.username}} ({{user.name}}) 
 <a href="{{ url_for('logout') }}"><button class="btn btn-primary">Logout</button></a>
 <a href="{{ url_for('compose') }}"><button class="btn btn-primary">Compose</button></a>
 <a href="{{ url_for('delete') }}"><button class="btn btn-primary">Delete Account</button></a>
@@ -26,6 +32,7 @@ You are currently logged in as: {{user.name}}
 
 <br>
 
+
 <form class="sort" action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     {{form.sortByOptions.label}}
@@ -36,16 +43,16 @@ You are currently logged in as: {{user.name}}
 {% for i in messages %}
     {% if i.subject is defined and not i.recycled %}
         {% if class1.query.filter_by(id=i.sending_user).first().username is not defined %}
-        <h1>User: Deleted Account</h1> <a href="{{ url_for('addCategory', messageID=i.id) }}"><button class="btn btn-primary">Add to Category</button></a> 
+        <h3>User: Deleted Account</h3> <a href="{{ url_for('addCategory', messageID=i.id) }}"><button class="btn btn-primary">Add to Category</button></a> 
         <a href="{{ url_for('recycleMessage', messageID=i.id) }}"><button class="btn btn-secondary">Recycle</button></a>
         {% else %}
-        <h1>User: {{class1.query.filter_by(id=i.sending_user).first().username}}</h1> <a href="{{ url_for('addCategory', messageID=i.id) }}"><button class="btn btn-secondary">Add to Category</button></a> 
+        <h3>User: {{class1.query.filter_by(id=i.sending_user).first().username}}</h3> <a href="{{ url_for('addCategory', messageID=i.id) }}"><button class="btn btn-secondary">Add to Category</button></a> 
         <a href="{{ url_for('recycleMessage', messageID=i.id) }}"><button class="btn btn-secondary">Recycle</button></a>
         {% endif %}
     
-        <p> Timestamp: {{i.timestamp}}</p>
-        <p> Subject: {{i.subject}}</p>
-        <p> Body: {{i.body}}</p>
+        <p> <h5> Timestamp: </h5> {{i.timestamp}}</p>
+        <p> <h5> Subject: </h5> {{i.subject}}</p>
+        <p> <h5>Body: </h5> {{i.body}}</p>
         {% if i.filePath is not none %}
             <p><img id="img-file" src="{{i.filePath}}"> </p>
     {% endif %}
@@ -53,3 +60,5 @@ You are currently logged in as: {{user.name}}
 
     
 {% endfor %}
+
+</body>

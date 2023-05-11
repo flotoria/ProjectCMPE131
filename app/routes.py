@@ -226,7 +226,7 @@ def handle_message(message):
 @app.route('/chat', methods=['GET', 'POST'])
 @login_required
 def chat():
-    return render_template('chat.html', username=current_user.username)
+    return render_template('chat.html', username=current_user.username, name=current_user.name)
 
 # Route to the draft page 
 @app.route('/drafts/', methods=['GET', 'POST'])

@@ -5,9 +5,14 @@
             max-width: 300px;
             max-height: 300px;
         }
+        body {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
     </style>
 <head>
 
+<body>
     <h1>Categories</h1>
     <a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>  
 
@@ -40,9 +45,9 @@
     {% for j in i.messages %}
     {% if not j.recycled %}
         <h3>User: {{class1.query.filter_by(id=j.sending_user).first().username}}</h3>
-        <p> Timestamp: {{j.timestamp}}</p>
-        <p> Subject: {{j.subject}}</p>
-        <p> Body: {{j.body}}</p>
+        <p> <h5> Timestamp: </h5> {{j.timestamp}}</p>
+        <p> <h5> Subject: </h5> {{j.subject}}</p>
+        <p> <h5>Body: </h5> {{j.body}}</p>
         {% if j.filePath is not none %}
         <p><img id="img-file" src="{{j.filePath}}"> </p>
         {% endif %}
@@ -51,3 +56,5 @@
     {% endfor %}
     
 {% endfor %}
+
+</body>

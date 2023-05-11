@@ -1,4 +1,17 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        body {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
 <h1>User deleted.</h1>
 
-<a href="{{ url_for('login') }}"><button>Login</button></a>
-<a href="{{ url_for('register') }}"><button>Register</button></a>
+<a href="{{ url_for('login') }}"><button class="btn btn-primary">Login</button></a>
+<a href="{{ url_for('register') }}"><button class="btn btn-primary">Register</button></a>
+
+</body>

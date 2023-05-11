@@ -5,9 +5,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js" integrity="sha512-xbQU0+iHqhVt7VIXi6vBJKPh3IQBF5B84sSHdjKiSccyX/1ZI7Vnkt2/8y8uruj63/DVmCxfUNohPNruthTEQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <style>
-        #messages{ 
+        #messages p{ 
            width: 100% !important;
+           margin: 0px;
+           padding: 0px;
         }
+        .input-box {
+            width: 75vh;
+        }
+        body {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        #messages {
+            width: 75vh;
+            height: 50vh;
+            border: 1px solid;
+            border-radius: 20px;
+            overflow-y: auto;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
     </style>
 </head>
 <body>
@@ -17,24 +37,36 @@
     <script type="text/javascript">
        $(document).ready(function() {
             var socket = io.connect("http://localhost:5000");
+
+            var messageBox = document.getElementById('messages');
         
+            socket.on('connect', function() {
+                joinMsg = "<strong>{{username}} ({{name}})</strong> has joined the chat."
+                socket.send(joinMsg);
+                messageBox.scrollTop = messageBox.scrollHeight;
+            });
+            
             socket.on('message', function(data) {
-                $('#messages').append($('<p>').text(data));
+                $('#messages').append($('<p>').html(data));
+                messageBox.scrollTop = messageBox.scrollHeight;
             });
 
             $('#send').on('click', function() {
-                msg = "{{username}}: " + $('#message').val() 
-                socket.send(msg);
-                $('#message').val('');
+                if ( $('#message').val().length >= 1) { 
+                    msg = "<strong>{{username}} ({{name}}): </strong>" + $('#message').val() 
+                    socket.send(msg);
+                    $('#message').val('');
+                }
             });
         });
-        
+
+    
     </script>
 
     <h1>Chat</h1>
     <a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>
     <div id="messages"></div>
-    <input type="text" id="message" value="" required>
+    <input class="input-box" type="text" id="message" value="" required minlength="1">
     <button id="send" class="btn btn-primary">Send</button>
 </body>
 </html>

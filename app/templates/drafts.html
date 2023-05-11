@@ -1,8 +1,15 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        body {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+    </style>
 <head>
 
 
+<body>
 <h1>Drafts</h1>
 <a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>
 {% for i in drafts %}
@@ -15,3 +22,4 @@
 {% endif %}
 <a href="{{ url_for('sendDraft', id=i.id) }}"><button class="btn btn-secondary">Send draft</button></a> </p> 
 {% endfor %} 
+</body>
