@@ -17,8 +17,8 @@
 ## Non-functional Requirements
 1. Hash all passwords with the SHA1 algorithm
 2. Character count should not exceed 256 characters
-3. Image size limit of 8MBs
-4. Limit amount of people can receive an email to 5 people
+3. Only one image can be attached at a time
+4. Limit amount of people can receive an email to 1 person
 
 
 ## Use Case
