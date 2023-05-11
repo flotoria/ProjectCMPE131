@@ -31,6 +31,7 @@ from flask import url_for
 from werkzeug.security import generate_password_hash
 from flask_socketio import SocketIO, send
 import os 
+import random
 
 # Main page for registering / login
 @app.route("/")
@@ -76,11 +77,12 @@ def compose():
                 # The timestamp is automatically generated at time of creation.
                 fileDirectory = None
                 dateAndTime = datetime.now()
+                imageIdentifier = random.randint(0, 10000000)
                 if form.file.data: 
                     f = form.file.data
                     filename = secure_filename(f.filename)
-                    fileDirectory = url_for('static', filename=f'image_database/{filename}')
-                    f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    fileDirectory = url_for('static', filename=f'image_database/{imageIdentifier}_{filename}')
+                    f.save(os.path.join(app.config['UPLOAD_FOLDER'], f"{imageIdentifier}_" + filename))
                 message = Message(subject=form.subject.data, body=form.body.data, sending_user=current_user.id, receiving_user=User.query.filter_by(username=form.receiving_username.data).first().id, timestamp=dateAndTime, filePath=fileDirectory)
                 # Add the message to the database and commit the changes
                 db.session.add(message)
@@ -95,11 +97,12 @@ def compose():
                 # The timestamp is automatically generated at time of creation.
                 fileDirectory = None
                 dateAndTime = datetime.now()
+                imageIdentifier = random.randint(0, 10000000)
                 if form.file.data: 
                     f = form.file.data
                     filename = secure_filename(f.filename)
-                    fileDirectory = url_for('static', filename=f'image_database/{filename}')
-                    f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    fileDirectory = url_for('static', filename=f'image_database/{imageIdentifier}_{filename}')
+                    f.save(os.path.join(app.config['UPLOAD_FOLDER'], f"{imageIdentifier}_" + filename))
                 draft = Drafts(subject=form.subject.data, body=form.body.data, sending_user=current_user.id, receiving_user=User.query.filter_by(username=form.receiving_username.data).first().id, timestamp=dateAndTime, filePath=fileDirectory)
                 # Add the message to the database and commit the changes
                 db.session.add(draft)
