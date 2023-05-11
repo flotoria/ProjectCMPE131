@@ -40,15 +40,23 @@
 
             var messageBox = document.getElementById('messages');
         
+            socket.on('connect', function() {
+                joinMsg = "<strong>{{username}} ({{name}})</strong> has joined the chat."
+                socket.send(joinMsg);
+                messageBox.scrollTop = messageBox.scrollHeight;
+            });
+            
             socket.on('message', function(data) {
                 $('#messages').append($('<p>').html(data));
                 messageBox.scrollTop = messageBox.scrollHeight;
             });
 
             $('#send').on('click', function() {
-                msg = "<strong>{{username}} ({{name}}): </strong>" + $('#message').val() 
-                socket.send(msg);
-                $('#message').val('');
+                if ( $('#message').val().length >= 1) { 
+                    msg = "<strong>{{username}} ({{name}}): </strong>" + $('#message').val() 
+                    socket.send(msg);
+                    $('#message').val('');
+                }
             });
         });
 
@@ -58,7 +66,7 @@
     <h1>Chat</h1>
     <a href="{{ url_for('dashboard') }}"><button class="btn btn-primary">Back</button></a>
     <div id="messages"></div>
-    <input class="input-box" type="text" id="message" value="" required>
+    <input class="input-box" type="text" id="message" value="" required minlength="1">
     <button id="send" class="btn btn-primary">Send</button>
 </body>
 </html>
