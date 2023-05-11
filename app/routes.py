@@ -263,7 +263,6 @@ def editprofile():
         if form.name.data != "":
             current.name = form.name.data
         if form.username.data != "" and User.query.filter_by(username=form.username.data).first() is None and DeletedAccounts.validateUsername(form.username.data) is True:
-            print(User.query.filter_by(name=form.username.data).first() )
             current.username = form.username.data
         else:
             flash("Username already exists!")
