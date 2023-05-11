@@ -301,3 +301,40 @@ def addCategory(messageID):
         db.session.commit() 
         return redirect(url_for('dashboard'))
     return render_template('add_category.html', categories=userCategories)
+
+@app.route('/deleteMessage/<int:messageID>', methods=['GET', 'POST'])
+@login_required
+def deleteMessage(messageID): 
+    message = Message.query.filter_by(id=messageID).first()
+    message.subject = None
+    message.body = None
+    message.filePath = None
+    message.receiving_user = None
+    message.sending_user = None
+    message.category = None
+    if message.message_category is not None:
+        message.message_category.messages.remove(message)
+    db.session.commit()
+    return redirect(url_for('dashboard'))
+
+@app.route('/recycleMessage/<int:messageID>', methods=['GET', 'POST'])
+@login_required
+def recycleMessage(messageID): 
+    message = Message.query.filter_by(id=messageID).first()
+    message.recycled = True
+    db.session.commit()
+    return redirect(url_for('dashboard'))
+
+@app.route('/recyclelist', methods=['GET', 'POST'])
+@login_required
+def recycleList(): 
+    messages = Message.query.filter_by(receiving_user=current_user.id, recycled=True).all()
+    return render_template('recycle.html', messages=messages, class1=User)
+
+@app.route('/unrecycleMessage/<int:messageID>', methods=['GET', 'POST'])
+@login_required
+def unrecycleMessage(messageID): 
+    message = Message.query.filter_by(id=messageID).first()
+    message.recycled = False
+    db.session.commit()
+    return redirect(url_for('dashboard'))

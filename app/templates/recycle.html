@@ -1,0 +1,29 @@
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<head>
+
+
+
+<h1>Recycle Bin</h1>
+
+{% for i in messages %}
+
+    {% if i.subject is defined and i.recycled %}
+    {% if class1.query.filter_by(id=i.sending_user).first().username is not defined %}
+    <h1>User: Deleted Account</h1> 
+    <a href="{{ url_for('deleteMessage', messageID=i.id) }}"><button class="btn btn-secondary">Delete</button></a>   <a href="{{ url_for('unrecycleMessage', messageID=i.id) }}"><button class="btn btn-secondary">Recover</button></a>
+    {% else %}
+    <h1>User: {{class1.query.filter_by(id=i.sending_user).first().username}}</h1>
+    <a href="{{ url_for('deleteMessage', messageID=i.id) }}"><button class="btn btn-secondary">Delete</button></a>   <a href="{{ url_for('unrecycleMessage', messageID=i.id) }}"><button class="btn btn-secondary">Recover</button></a>
+    {% endif %}
+
+    <p> Timestamp: {{i.timestamp}}</p>
+    <p> Subject: {{i.subject}}</p>
+    <p> Body: {{i.body}}</p>
+    {% if i.filePath is not none %}
+        <p><img id="img-file" src="{{i.filePath}}"> </p>
+    {% endif %}
+    {% endif %}
+
+{% endfor %}

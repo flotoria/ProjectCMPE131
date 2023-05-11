@@ -1,4 +1,3 @@
-
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 <head>
@@ -31,6 +30,7 @@
 
     <h1>Category: {{i.categoryName}}</h1>
     {% for j in i.messages %}
+    {% if not j.recycled %}
         <h3>User: {{class1.query.filter_by(id=j.sending_user).first().username}}</h3>
         <p> Timestamp: {{j.timestamp}}</p>
         <p> Subject: {{j.subject}}</p>
@@ -38,6 +38,7 @@
         {% if j.filePath is not none %}
         <p><img id="img-file" src="{{j.filePath}}"> </p>
         {% endif %}
+    {% endif %}
 
     {% endfor %}
     
