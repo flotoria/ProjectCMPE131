@@ -40,6 +40,8 @@ class Message(db.Model):
     sending_user = db.Column(db.Integer, db.ForeignKey('user.id'))
     receiving_user = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+
 
     def __repr__(self):
         return f'{self.id} : {self.subject}'
@@ -85,3 +87,9 @@ class Drafts(db.Model):
     # Visiblity
     visible = db.Column(db.Boolean, default=True)
 
+
+class Categories(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    categoryName = db.Column(db.String(100))
+    userID = db.Column(db.Integer)
+    messages = db.relationship('Message', backref='message_category', lazy=True)

@@ -12,11 +12,13 @@ from .forms import ComposeForm
 from .forms import RegisterForm
 from .forms import SearchForm
 from .forms import SortForm
+from .forms import CategoryForm
 from .models import Drafts
 from .models import DeletedAccounts
 from .models import User 
 from .models import Message
 from .models import ToDo
+from .models import Categories
 from .forms import ToDoForm
 from .forms import EditProfile
 from werkzeug.utils import secure_filename
@@ -260,3 +262,42 @@ def editprofile():
         return redirect(url_for('dashboard'))
     print(current.username)
     return render_template('editprofile.html', form=form)
+
+
+@app.route('/categories/', methods=['GET', 'POST'])
+@login_required
+def categories(): 
+    userCategories = Categories.query.filter_by(userID=current_user.id).all()
+    categoryValue = request.form.get('filter')
+    filteredCategories = userCategories
+    form = CategoryForm() 
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            if form.name.data != "":
+                category = Categories(categoryName=form.name.data, userID=current_user.id)
+                db.session.add(category)
+                db.session.commit()
+                return redirect(url_for('categories'))
+        if categoryValue == "All":
+            filteredCategories = userCategories
+        else:
+            category = Categories.query.filter_by(id=int(categoryValue)).first()
+            filteredCategories=[category]
+        
+
+    return render_template('categories.html', form=form, userCategories=userCategories, filteredCategories=filteredCategories, class1=User)
+
+
+@app.route('/addCategory/<int:messageID>', methods=['GET', 'POST'])
+@login_required
+def addCategory(messageID): 
+    userCategories = Categories.query.filter_by(userID=current_user.id).all()
+    message = Message.query.filter_by(id=messageID).first()
+    if request.method == 'POST': 
+        value = request.form.get('categories')
+        category = Categories.query.filter_by(id=int(value)).first()
+        message.message_category = category 
+        category.messages.append(message)
+        db.session.commit() 
+        return redirect(url_for('dashboard'))
+    return render_template('add_category.html', categories=userCategories)

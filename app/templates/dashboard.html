@@ -20,6 +20,7 @@ You are currently logged in as: {{user.name}}
 <a href="{{ url_for('chat') }}"><button class="btn btn-primary">Public Chat</button></a>
 <a href="{{ url_for('draft') }}"><button class="btn btn-primary">Drafts</button></a>
 <a href="{{ url_for('editprofile') }}"><button class="btn btn-primary">Edit Profile</button></a>
+<a href="{{ url_for('categories') }}"><button class="btn btn-primary">Categories</button></a>
 
 <br>
 
@@ -33,9 +34,9 @@ You are currently logged in as: {{user.name}}
 {% for i in messages %}
 
     {% if class1.query.filter_by(id=i.sending_user).first().username is not defined %}
-    <h1>User: Deleted Account</h1>
+    <h1>User: Deleted Account</h1> <a href="{{ url_for('addCategory', messageID=i.id) }}"><button class="btn btn-primary">Add to Category</button></a>
     {% else %}
-    <h1>User: {{class1.query.filter_by(id=i.sending_user).first().username}}</h1>
+    <h1>User: {{class1.query.filter_by(id=i.sending_user).first().username}}</h1> <a href="{{ url_for('addCategory', messageID=i.id) }}"><button class="btn btn-secondary">Add to Category</button></a>
     {% endif %}
    
     <p> Timestamp: {{i.timestamp}}</p>
@@ -44,4 +45,6 @@ You are currently logged in as: {{user.name}}
     {% if i.filePath is not none %}
         <p><img id="img-file" src="{{i.filePath}}"> </p>
     {% endif %}
+
+    
 {% endfor %}

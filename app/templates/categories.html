@@ -1,0 +1,44 @@
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<head>
+
+
+<form class="sort" action="" method="POST" novalidate>
+    {{form.hidden_tag()}}
+    {{form.name.label}}
+    {{form.name()}}    
+    {{form.submit(class="btn btn-primary")}}
+</form>
+
+<form action="" method="POST" novalidate>
+    <p>Filter by category:
+    <select name="filter">
+        <option value="All"> Show all </option>
+        {% for i in userCategories %}
+       
+        <option value="{{i.id}}">{{ i.categoryName }} </option>
+        {% endfor %}
+
+      </select>
+  
+
+      <input class="btn btn-primary" type="submit" value="Submit">
+    </p>
+</form>
+
+{% for i in filteredCategories %}
+
+    <h1>Category: {{i.categoryName}}</h1>
+    {% for j in i.messages %}
+        <h3>User: {{class1.query.filter_by(id=j.sending_user).first().username}}</h3>
+        <p> Timestamp: {{j.timestamp}}</p>
+        <p> Subject: {{j.subject}}</p>
+        <p> Body: {{j.body}}</p>
+        {% if j.filePath is not none %}
+        <p><img id="img-file" src="{{j.filePath}}"> </p>
+        {% endif %}
+
+    {% endfor %}
+    
+{% endfor %}
