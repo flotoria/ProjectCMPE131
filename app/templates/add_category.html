@@ -1,0 +1,17 @@
+
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<head>
+
+
+  <form action="" method="POST" novalidate>
+    <p> Select a category: </p>
+    <select name="categories" id="categories">
+        {% for i in categories %}
+        <option value="{{i.id}}">{{ i.categoryName }} </option>
+        {% endfor %}
+      </select>
+
+      <input class="btn btn-primary" type="submit" value="Submit">
+    </form>
