@@ -8,6 +8,12 @@
             align-items: center;
             justify-content: center; 
         }
+        .center-flash-messages {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 
@@ -15,10 +21,12 @@
 
     <h1>Register</h1>
 
-    {% for message in get_flashed_messages() %}
-        <p>{{ message }}</p>
-    {% endfor %}
-
+    <div class="center-flash-messages">
+        {% for message in get_flashed_messages() %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+        
     <form action="" method="POST" novalidate>
         {{form.hidden_tag()}}
         <p> Welcome to the registration page!</p>
