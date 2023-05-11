@@ -31,10 +31,11 @@ class User(db.Model, UserMixin):
 class Message(db.Model):
     # Includes columns for the id, subject, body, and the timestamp.
     id = db.Column(db.Integer, primary_key=True)
-    subject = db.Column(db.String(256), nullable=False) 
+    subject = db.Column(db.String(256), nullable=True) 
     body = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, nullable=False)
     filePath = db.Column(db.String(1000), nullable=True)
+    recycled = db.Column(db.Boolean, default=False)
 
     # Include columns for the sending and receiving user.
     sending_user = db.Column(db.Integer, db.ForeignKey('user.id'))

@@ -21,7 +21,6 @@ from .models import ToDo
 from .models import Categories
 from .forms import ToDoForm
 from .forms import EditProfile
-from .forms import DeleteMessage
 from werkzeug.utils import secure_filename
 from flask_login import current_user
 from flask_login import login_user 
@@ -263,3 +262,79 @@ def editprofile():
         return redirect(url_for('dashboard'))
     print(current.username)
     return render_template('editprofile.html', form=form)
+
+
+@app.route('/categories/', methods=['GET', 'POST'])
+@login_required
+def categories(): 
+    userCategories = Categories.query.filter_by(userID=current_user.id).all()
+    categoryValue = request.form.get('filter')
+    filteredCategories = userCategories
+    form = CategoryForm() 
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            if form.name.data != "":
+                category = Categories(categoryName=form.name.data, userID=current_user.id)
+                db.session.add(category)
+                db.session.commit()
+                return redirect(url_for('categories'))
+        if categoryValue == "All":
+            filteredCategories = userCategories
+        else:
+            category = Categories.query.filter_by(id=int(categoryValue)).first()
+            filteredCategories=[category]
+        
+
+    return render_template('categories.html', form=form, userCategories=userCategories, filteredCategories=filteredCategories, class1=User)
+
+
+@app.route('/addCategory/<int:messageID>', methods=['GET', 'POST'])
+@login_required
+def addCategory(messageID): 
+    userCategories = Categories.query.filter_by(userID=current_user.id).all()
+    message = Message.query.filter_by(id=messageID).first()
+    if request.method == 'POST': 
+        value = request.form.get('categories')
+        category = Categories.query.filter_by(id=int(value)).first()
+        message.message_category = category 
+        category.messages.append(message)
+        db.session.commit() 
+        return redirect(url_for('dashboard'))
+    return render_template('add_category.html', categories=userCategories)
+
+@app.route('/deleteMessage/<int:messageID>', methods=['GET', 'POST'])
+@login_required
+def deleteMessage(messageID): 
+    message = Message.query.filter_by(id=messageID).first()
+    message.subject = None
+    message.body = None
+    message.filePath = None
+    message.receiving_user = None
+    message.sending_user = None
+    message.category = None
+    if message.message_category is not None:
+        message.message_category.messages.remove(message)
+    db.session.commit()
+    return redirect(url_for('dashboard'))
+
+@app.route('/recycleMessage/<int:messageID>', methods=['GET', 'POST'])
+@login_required
+def recycleMessage(messageID): 
+    message = Message.query.filter_by(id=messageID).first()
+    message.recycled = True
+    db.session.commit()
+    return redirect(url_for('dashboard'))
+
+@app.route('/recyclelist', methods=['GET', 'POST'])
+@login_required
+def recycleList(): 
+    messages = Message.query.filter_by(receiving_user=current_user.id, recycled=True).all()
+    return render_template('recycle.html', messages=messages, class1=User)
+
+@app.route('/unrecycleMessage/<int:messageID>', methods=['GET', 'POST'])
+@login_required
+def unrecycleMessage(messageID): 
+    message = Message.query.filter_by(id=messageID).first()
+    message.recycled = False
+    db.session.commit()
+    return redirect(url_for('dashboard'))
