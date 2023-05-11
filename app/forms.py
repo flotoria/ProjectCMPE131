@@ -72,7 +72,6 @@ class EditProfile(FlaskForm):
     password = StringField('New Password')
     submit = SubmitField('Submit Changes')
 
-class DeleteMessage(FlaskForm):
-	subject = StringField("Search", validators=[DataRequired()])
-    # Submit button
-	submit = SubmitField("Submit")
+class CategoryForm(FlaskForm):
+    name = StringField('Category Name')
+    submit = SubmitField('Create Category')
