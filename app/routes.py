@@ -359,3 +359,10 @@ def unrecycleMessage(messageID):
     message.recycled = False
     db.session.commit()
     return redirect(url_for('dashboard'))
+
+@app.route('/sent')
+@login_required
+def sent():
+    # Grab all the messages that have been sent and display them on the sent.html page
+    messages = Message.query.filter_by(sending_user=current_user.id).all()
+    return render_template('sent.html', messages=messages, class1=User)
