@@ -71,3 +71,7 @@ class EditProfile(FlaskForm):
     username = StringField('New Username')
     password = StringField('New Password')
     submit = SubmitField('Submit Changes')
+
+class CategoryForm(FlaskForm):
+    name = StringField('Category Name')
+    submit = SubmitField('Create Category')
