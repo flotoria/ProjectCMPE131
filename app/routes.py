@@ -243,7 +243,7 @@ def sendDraft(id):
         time = datetime.now()
         draft = Drafts.query.filter_by(id=id).first()
         draft.visible = False
-        message = Message(subject=draft.subject, body=draft.body, sending_user=draft.sending_user, receiving_user=draft.receiving_user, timestamp=time)
+        message = Message(subject=draft.subject, body=draft.body, sending_user=draft.sending_user, receiving_user=draft.receiving_user, timestamp=time, filePath=draft.filePath)
         db.session.add(message)
         db.session.commit()
         return redirect(url_for('dashboard'))
