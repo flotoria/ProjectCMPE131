@@ -15,7 +15,7 @@ pip install sqlalchemy
 pip install flask_login
 pip install werkzeug
 pip install flask_wtf
-pip install datetimes
+pip install datetime
 pip install wtforms
 pip install flask_socketio
 ```
