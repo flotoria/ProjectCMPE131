@@ -311,7 +311,7 @@ def addCategory(messageID):
     userCategories = Categories.query.filter_by(userID=current_user.id).all()
     message = Message.query.filter_by(id=messageID).first()
     # If it's a post request
-    if request.method == 'POST': 
+    if request.method == 'POST' and message.receiving_user == current_user.id: 
         # Link the message to the category
         value = request.form.get('categories')
         category = Categories.query.filter_by(id=int(value)).first()
@@ -327,14 +327,15 @@ def addCategory(messageID):
 def deleteMessage(messageID): 
     # Wipes all data related to the message and unlink the message from any categories
     message = Message.query.filter_by(id=messageID).first()
-    message.subject = None
-    message.body = None
-    message.filePath = None
-    message.receiving_user = None
-    message.sending_user = None
-    message.category = None
-    if message.message_category is not None:
-        message.message_category.messages.remove(message)
+    if message.receiving_user == current_user.id:
+        message.subject = None
+        message.body = None
+        message.filePath = None
+        message.receiving_user = None
+        message.sending_user = None
+        message.category = None
+        if message.message_category is not None:
+            message.message_category.messages.remove(message)
     db.session.commit()
     return redirect(url_for('dashboard'))
 
@@ -344,8 +345,9 @@ def deleteMessage(messageID):
 def recycleMessage(messageID): 
     # Recycle the message by setting the recycled attribute to true
     message = Message.query.filter_by(id=messageID).first()
-    message.recycled = True
-    db.session.commit()
+    if message.receiving_user == current_user.id:
+        message.recycled = True
+        db.session.commit()
     return redirect(url_for('dashboard'))
 
 # Route for the recycle bin page
@@ -361,9 +363,10 @@ def recycleList():
 @login_required
 def unrecycleMessage(messageID): 
     message = Message.query.filter_by(id=messageID).first()
-    # Sets the recycled attribute to false
-    message.recycled = False
-    db.session.commit()
+    if message.receiving_user == current_user.id:
+        # Sets the recycled attribute to false
+        message.recycled = False
+        db.session.commit()
     return redirect(url_for('dashboard'))
 
 @app.route('/sent')
