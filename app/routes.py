@@ -264,7 +264,7 @@ def editprofile():
             current.name = form.name.data
         if form.username.data != "" and User.query.filter_by(username=form.username.data).first() is None and DeletedAccounts.validateUsername(form.username.data) is True:
             current.username = form.username.data
-        else:
+        elif form.username.data != "" and (User.query.filter_by(username=form.username.data).first() or DeletedAccounts.validateUsername(form.username.data) is False):
             flash("Username already exists!")
             return redirect(url_for('editprofile'))
         if form.password.data != "":
