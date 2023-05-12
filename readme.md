@@ -29,6 +29,10 @@ app.app_context().push()
 db.create_all()
 exit()
 ``` 
+
+It is important to note that if you do not have a folder called "image_database" inside app/static, there will be issues with uploading images. However, the folder
+has been already included at your convenience. In the case that the folder isn't in there, make sure to create the folder.
+
 ## How to run
 ```
 cd ProjectCMPE131
@@ -76,7 +80,7 @@ From there depending on which button you press, you will be taken to different p
 - Derrick Chan - Registration, Search Messages, and Attach Images
 - Felix Vo - Sort Messages, Delete/Recycle Messages
 - Marvin Xin - To-do List, Edit Profile, Custom Categories
-- **EXTRA FEATURE (View Sent Messages**: Done by Ryan Pham
+- **EXTRA FEATURE (View Sent Messages)**: Done by Ryan Pham
 
 ## Project Status
 Currently, our project has a total of 13 functional requirements completed that are implemented into our email client. We just added chatbox, recycle/delete messages, attach images to messages, custom categories, view sent messages, and edit user profile. We also completed some CSS styling as finishing touches.
